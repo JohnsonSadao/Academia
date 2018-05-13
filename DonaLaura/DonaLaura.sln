@@ -5,6 +5,22 @@ VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura", "DonaLaura\DonaLaura.csproj", "{4CE09E4B-862B-4641-8FA1-A851F8286B3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Apresentacao", "1.Apresentacao", "{23CA0859-8819-47AF-BCE4-402B1A0EA28A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Aplicação", "2.Aplicação", "{A8CFD2ED-AF6F-43E2-B7DF-8755FBEE163A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Dominio", "3.Dominio", "{EC0EB791-52CD-4B05-9533-ADC656B1C514}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Infraestrutura", "4.Infraestrutura", "{8D09C91C-4650-4B0C-8A99-A000153F11BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.Domain", "DonaLaura.Domain\DonaLaura.Domain.csproj", "{EC5DAE41-9E9C-4898-91E7-8C972B0AD35F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testes", "Testes", "{CE62A0CE-9838-48F7-B44D-CC2257FF780C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.Dominio.Test", "DonaLaura.Domain.Test\DonaLaura.Dominio.Test.csproj", "{5DDBECC8-EAA0-4C4A-8486-786CFE1A0D7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.Comum.Teste", "DonaLauraComum\DonaLaura.Comum.Teste.csproj", "{B778CFAA-BDD5-4C27-A0F5-3787C3AD5AB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +31,27 @@ Global
 		{4CE09E4B-862B-4641-8FA1-A851F8286B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CE09E4B-862B-4641-8FA1-A851F8286B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CE09E4B-862B-4641-8FA1-A851F8286B3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC5DAE41-9E9C-4898-91E7-8C972B0AD35F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC5DAE41-9E9C-4898-91E7-8C972B0AD35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC5DAE41-9E9C-4898-91E7-8C972B0AD35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC5DAE41-9E9C-4898-91E7-8C972B0AD35F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DDBECC8-EAA0-4C4A-8486-786CFE1A0D7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DDBECC8-EAA0-4C4A-8486-786CFE1A0D7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DDBECC8-EAA0-4C4A-8486-786CFE1A0D7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DDBECC8-EAA0-4C4A-8486-786CFE1A0D7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B778CFAA-BDD5-4C27-A0F5-3787C3AD5AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B778CFAA-BDD5-4C27-A0F5-3787C3AD5AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B778CFAA-BDD5-4C27-A0F5-3787C3AD5AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B778CFAA-BDD5-4C27-A0F5-3787C3AD5AB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4CE09E4B-862B-4641-8FA1-A851F8286B3D} = {23CA0859-8819-47AF-BCE4-402B1A0EA28A}
+		{EC5DAE41-9E9C-4898-91E7-8C972B0AD35F} = {EC0EB791-52CD-4B05-9533-ADC656B1C514}
+		{5DDBECC8-EAA0-4C4A-8486-786CFE1A0D7B} = {CE62A0CE-9838-48F7-B44D-CC2257FF780C}
+		{B778CFAA-BDD5-4C27-A0F5-3787C3AD5AB6} = {CE62A0CE-9838-48F7-B44D-CC2257FF780C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {829CEBBB-86A5-42D3-8152-F7BA045211EF}
