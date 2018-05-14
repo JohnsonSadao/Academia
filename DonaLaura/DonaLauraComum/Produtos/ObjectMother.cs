@@ -15,7 +15,7 @@ namespace DonaLauraComum.Produtos
             produto.Nome = "Arroz";
             produto.PrecoCusto = 2.90;
             produto.PrecoVenda = 3.90;
-            produto.Disp = true;
+            produto.Disponibilidade = true;
             produto.DataFabricacao = DateTime.Now;
             produto.DataValidade = DateTime.Now.AddDays(49);
             
