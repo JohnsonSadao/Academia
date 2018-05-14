@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DonaLaura.Domain.Exceptions;
+using DonaLaura.Domain.Exceptions.Produto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +10,21 @@ namespace DonaLaura.Domain.Modelo
 {
     public class Produto : Entidade
     {
-        public string nome { get; set; }
-        public double precoVenda { get; set; }
-        public double precoCusto { get; set; }
-        public bool disp { get; set; }
-        public DateTime dataFabricacao { get; set; }
-        public DateTime dataValidade { get; set; }
+        public string Nome { get; set; }
+        public double PrecoVenda { get; set; }
+        public double PrecoCusto { get; set; }
+        public bool Disp { get; set; }
+        public DateTime DataFabricacao { get; set; }
+        public DateTime DataValidade { get; set; }
 
         public override void Validacoes()
         {
-            throw new NotImplementedException();
+            if (Nome.Length < 4)
+                throw new NomeException();
+            if (DataFabricacao > DataValidade)
+                throw new DataValidadeException();
+            if (PrecoVenda < PrecoCusto)
+                throw new CustoException();
         }
     }
 }

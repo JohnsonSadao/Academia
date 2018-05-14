@@ -7,19 +7,21 @@ using System.Threading.Tasks;
 
 namespace DonaLauraComum.Produtos
 {
-    public class ObjectMother
+    public static class ObjectMother
     {
-        public Produto ObterProdutoValido()
+        public static Produto ObterProdutoValido()
         {
             Produto produto = new Produto();
-            produto.nome = "Arroz";
-            produto.precoCusto = 2.90;
-            produto.precoVenda = 3.90;
-            produto.disp = true;
-            produto.dataFabricacao = DateTime.Now;
-            produto.dataValidade = DateTime.Now + TimeSpan.FromDays(80);
+            produto.Nome = "Arroz";
+            produto.PrecoCusto = 2.90;
+            produto.PrecoVenda = 3.90;
+            produto.Disp = true;
+            produto.DataFabricacao = DateTime.Now;
+            produto.DataValidade = DateTime.Now.AddDays(49);
             
             return produto;
         }
+
+       
     }
 }
