@@ -57,10 +57,10 @@ namespace DonaLaura.Infra.Test.Produtos
         public void ProdutoRepository_Delete_ShouldBeOk()
         {
             Produto produto = ObjectMotherProduto.getValidProduto();
-            produto.Id = 1;
+            produto.Id = 2;
 
             _repository.Delete(produto);
-            Produto deleteObject = _repository.Get(1);
+            Produto deleteObject = _repository.Get(2);
 
             deleteObject.Should().BeNull();
         }

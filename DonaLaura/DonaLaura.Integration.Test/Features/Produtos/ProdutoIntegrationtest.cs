@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace DonaLaura.Integration.Test.Features.Produtos
 {
     [TestFixture]
-    public class ProdutoIntegrationtest
+    public class ProdutoIntegrationTest
     {
         private ProdutoService _service;
         private IProdutoRepository _repository;
@@ -150,15 +150,16 @@ namespace DonaLaura.Integration.Test.Features.Produtos
         public void ProdutoIntegration_Delete_ShouldBeOk()
         {
             Produto produto = ObjectMotherProduto.getValidProduto();
+            produto.Id = 2;
             //Executa
             _service.Delete(produto);
 
             //Saída
-            Produto produtodel = _service.Get(1);
+            Produto produtodel = _service.Get(2);
             produtodel.Should().BeNull();
 
             List<Produto> posts = _service.GetAll() as List<Produto>;
-            posts.Count().Should().Be(0);
+            posts.Count().Should().Be(1);
         }
 
         [Test]

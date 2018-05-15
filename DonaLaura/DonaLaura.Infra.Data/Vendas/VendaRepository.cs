@@ -1,4 +1,5 @@
-﻿using DonaLaura.Domain.Modelo;
+﻿using DonaLaura.Domain.Exceptions.Comum;
+using DonaLaura.Domain.Modelo;
 using DonaLaura.Domain.Modelo.Vendas;
 using DonaLaura.Infra.Data.Produtos;
 using System;
@@ -16,22 +17,60 @@ namespace DonaLaura.Infra.Data.Vendas
         
         public void Delete(Venda venda)
         {
-            throw new NotImplementedException();
+            if (venda.Id < 1)
+                throw new IdentifierUndefinedException();
+            string sql = "DELETE FROM TBVenda WHERE Id = @Id";
+            Db.Delete(sql, new object[] { "@Id", venda.Id });
         }
 
         public Venda Get(long id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+                throw new IdentifierUndefinedException();
+            string sql = @"SELECT
+                V.Id,
+                V.NomeCliente,
+                V.Quantidade,
+                V.ProdutoId,
+                P.Nome,
+			    P.PrecoVenda,
+			    P.PrecoCusto,
+			    P.Disponibilidade,
+			    P.DataFabricacao,
+			    P.DataValidade		
+            FROM
+                TBVenda AS V
+				INNER JOIN
+				TBProduto AS P ON P.Id = V.ProdutoId
+                WHERE V.Id = @Id";
+            return Db.Get(sql, Make, new object[] { "@Id", id });
         }
 
         public IEnumerable<Venda> GetAll()
         {
-            string sql = "SELECT * FROM TBVenda";
+            string sql = @"SELECT
+                V.Id,
+                V.NomeCliente,
+                V.Quantidade,
+                V.ProdutoId,
+                P.Nome,
+			    P.PrecoVenda,
+			    P.PrecoCusto,
+			    P.Disponibilidade,
+			    P.DataFabricacao,
+			    P.DataValidade		
+            FROM
+                TBVenda AS V
+				INNER JOIN
+				TBProduto AS P ON P.Id = V.ProdutoId";
             return Db.GetAll(sql,Make);
         }
 
         public Venda Save(Venda venda)
         {
+            if (venda.Id < 1)
+                throw new IdentifierUndefinedException();
+            venda.Validate();
             string sql = "INSERT INTO TBVenda(ProdutoId,NomeCliente,Quantidade) VALUES (@ProdutoId, @NomeCliente, @Quantidade)";
             venda.Id = Db.Insert(sql, Take(venda, false));
 
@@ -41,7 +80,14 @@ namespace DonaLaura.Infra.Data.Vendas
 
         public Venda Update(Venda venda)
         {
-            throw new NotImplementedException();
+
+            if (venda.Id < 1)
+                throw new IdentifierUndefinedException();
+            venda.Validate();
+            string sql = "UPDATE TBVenda SET NomeCliente = @NomeCliente, ProdutoId = @ProdutoId, Quantidade = @Quantidade WHERE Id = @Id"; 
+            Db.Update(sql, Take(venda));
+
+            return venda;
         }
 
         /// <summary>
