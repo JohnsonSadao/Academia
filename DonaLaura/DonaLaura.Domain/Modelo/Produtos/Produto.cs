@@ -17,7 +17,7 @@ namespace DonaLaura.Domain.Modelo
         public DateTime DataFabricacao { get; set; }
         public DateTime DataValidade { get; set; }
 
-        public override void Validacoes()
+        public override void Validate()
         {
             if (Nome.Length < 4)
                 throw new NomeException();

@@ -1,4 +1,5 @@
-﻿using DonaLaura.Domain.Modelo;
+﻿using DonaLaura.Domain.Exceptions.Comum;
+using DonaLaura.Domain.Modelo;
 using DonaLaura.Infra.Data.Produtos;
 using System;
 using System.Collections.Generic;
@@ -11,125 +12,113 @@ namespace DonaLaura.Infra.Data.Produtos
 {
     public class ProdutoRepository : IProdutoRepository
     {
-        #region QUERYS
-
-        private const string SqlInsereProduto =
-            @"INSERT INTO TBProduto
-                (Nome,
-                 PrecoVenda,
-                 PrecoCusto,
-                 Disponibilidade,
-                 DataFabricacao,
-                 DataValidade   
-                 )
-            VALUES
-                ({0}Nome,
-                 {0}PrecoVenda,
-                 {0}PrecoCusto,
-                 {0}Disponibilidade,
-                 {0}DataFabricacao,
-                 {0}DataValidade)";
-
-        private const string SqlEditaProduto =
-            @"UPDATE TBDISCIPLINA
-                SET
-                    Nome = {0}Nome,
-                    PrecoVenda = {0}Precovenda,
-                    PrecoCusto = {0}PrecoCusto,
-                    Disponibilidade = {0}Disponibilidade,
-                    DataFabricacao = {0}DataFabricacao,
-                    DataValidade =   {0}DataValidade
-
-                WHERE Id = {0}Id";
-
-        private const string SqlDeletaProduto =
-           @"DELETE FROM TBDISCIPLINA
-                WHERE Id = {0}Id";
-
-        private const string SqlSelecionaTodosProdutos =
-           @"SELECT
-                Id,
-                Nome
-            FROM
-                TBProduto";
-
-        private const string SqlSelecionaProdutoPorId =
-           @"SELECT
-                Id,
-                Nome
-            FROM
-                TBProduto
-            WHERE Id = {0}Id";
-
-        private const string SqlVerificaDependencia =
-           @"SELECT
-                Nome
-            FROM
-                TBVenda
-            WHERE ProdutoId = {0}Id";
-
-        #endregion QUERYS
-        public Produto Adicionar(Produto novoProduto)
+        public Produto Save(Produto produto)
         {
-            novoProduto.Id = Db.Insert(SqlInsereProduto, GetParametros(novoProduto));
+            produto.Validate();
 
-            return novoProduto;
+            string sql = "INSERT INTO TBProduto(Nome,PrecoVenda,PrecoCusto,Disponibilidade, DataFabricacao,DataValidade) " +
+                "VALUES (@Nome,@PrecoVenda,@PrecoCusto,@Disponibilidade,@DataFabricacao,@DataValidade)";
+            produto.Id = Db.Insert(sql, Take(produto,false));
+
+            return produto;
         }
 
-        public void Deletar(int id)
+
+        public Produto Update(Produto produto)
         {
-            throw new NotImplementedException();
+            produto.Validate();
+            if (produto.Id < 1)
+                throw new IdentifierUndefinedException();
+            string sql = "UPDATE TBProduto SET Nome = @Nome, PrecoVenda = @PrecoVenda, " +
+                 "PrecoCusto = @PrecoCusto,Disponibilidade = @Disponibilidade," +
+                 "DataFabricacao = @DataFabricacao, DataValidade = @DataValidade" +
+                 " WHERE Id = @Id";
+            Db.Update(sql, Take(produto));
+
+            return produto;
         }
 
-        public Produto Editar(Produto entidadeEditada)
+        public Produto Get(long id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+                throw new IdentifierUndefinedException();
+            string sql = "SELECT *FROM TBProduto WHERE Id = @Id";
+            return Db.Get<Produto>(sql, Make, new object[] { "@Id", id });
         }
 
-        public bool Existe(string nome)
+        public IEnumerable<Produto> GetAll()
         {
-            throw new NotImplementedException();
+            string sql = "SELECT * FROM TBProduto";
+            return Db.GetAll<Produto>(sql,Make);
         }
 
-        public bool RegistroComDependencia(int id)
+        public void Delete(Produto produto)
         {
-            throw new NotImplementedException();
+            if (produto.Id < 1)
+                throw new IdentifierUndefinedException();
+            string sql = "DELETE FROM TBProduto WHERE Id=@Id";
+            Db.Delete(sql, new object[] { "@Id", produto.Id });
         }
 
-        public Produto SelecionaPorId(int id)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Cria um objeto Customer baseado no DataReader.
+        /// </summary>
+        private static Func<IDataReader, Produto> Make = reader =>
+          new Produto
+          {
+              Id = Convert.ToInt64(reader["Id"]),
+              Nome = reader["Nome"].ToString(),
+              PrecoCusto = Convert.ToDouble(reader["PrecoCusto"]),
+              PrecoVenda = Convert.ToDouble(reader["PrecoVenda"]),
+              Disponibilidade = Convert.ToBoolean(reader["Disponibilidade"]),
+              DataFabricacao = Convert.ToDateTime(reader["DataFabricacao"]),
+              DataValidade = Convert.ToDateTime(reader["DataValidade"])
 
-        private Dictionary<string, object> GetParametros(Produto produto)
+          };
+
+
+        /// <summary>
+        /// Cria a lista de parametros do objeto Post para passar para o comando Sql
+        /// </summary>
+        /// <param name="post">Post.</param>
+        /// <returns>lista de parametros</returns>
+        private object[] Take(Produto produto, bool hasId = true)
         {
-            return new Dictionary<string, object>
+            object[] parametros = null;
+
+            if (hasId)
             {
-                { "Id", produto.Id },
-                { "Nome", produto.Nome },
-                { "PrecoVenda", produto.PrecoVenda },
-                { "PrecoCusto", produto.PrecoCusto },
-                { "Disponibilidade", produto.Disponibilidade },
-                { "DataFabricacao", produto.DataFabricacao },
-                { "DataValidade", produto.DataValidade }
-            };
-        }
+                parametros = new object[]
+                {
 
-        public List<Produto> SelecionaTudo()
-        {
-            return Db.GetAll(SqlSelecionaTodosProdutos, Converter);
-        }
-
-        private static Func<IDataReader, Produto> Converter = reader =>
-        new Produto
+                "@Id", produto.Id,
+                "@Nome", produto.Nome,
+                "@PrecoVenda", produto.PrecoVenda,
+                "@PrecoCusto", produto.PrecoCusto,
+                "@Disponibilidade", produto.Disponibilidade,
+                "@DataFabricacao", produto.DataFabricacao,
+                "@DataValidade", produto.DataValidade,
+                };
+            }
+            else
             {
-            Id = Convert.ToInt32(reader["Id"]),
-            Nome = Convert.ToString(reader["Nome"]),
-            PrecoVenda = Convert.ToDouble(reader["PrecoVenda"]),
-            PrecoCusto = Convert.ToDouble(reader["PrecoCusto"]),
-            Disponibilidade = Convert.ToBoolean(reader["Disponibilidade"]),
-            DataFabricacao = Convert.ToDateTime(reader["DataFabricacao"]),
-            DataValidade = Convert.ToDateTime(reader["DataValidade"]),
-            };
+                parametros = new object[]
+                {
+                "@Nome", produto.Nome,
+                "@PrecoVenda", produto.PrecoVenda,
+                "@PrecoCusto", produto.PrecoCusto,
+                "@Disponibilidade", produto.Disponibilidade,
+                "@DataFabricacao", produto.DataFabricacao,
+                "@DataValidade", produto.DataValidade,  
+                };
+            }
+
+            return parametros;
+        }
+
+        public bool RegisterWithDependency(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

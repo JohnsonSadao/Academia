@@ -11,134 +11,64 @@ namespace DonaLaura.Infra
 {
     public static class Db
     {
-        #region Attributes
+        private static readonly string dataProvider = ConfigurationManager.AppSettings.Get("DataProvider");
+        private static readonly DbProviderFactory factory = DbProviderFactories.GetFactory(dataProvider);
+
+        private static readonly string connectionStringName = ConfigurationManager.AppSettings.Get("ConnectionStringName");
+        private static readonly string connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+
 
         /// <summary>
-        /// Propriedade de configurações (AppSettings)
+        /// Busca um item de acordo com o comando Sql e parâmetros.
         /// </summary>
-        private static readonly string _connectionStringName = ConfigurationManager.AppSettings.Get("ConnectionStringName"); //Busca na tag appSettings em App.config a chave ConnectionStringName
-
-        private static readonly string _providerName = ConfigurationManager.AppSettings.Get("DataProvider"); //Busca na tag appSettings em App.config a chave DataProvider
-
-        private static readonly string _connectionString = ConfigurationManager.ConnectionStrings[_connectionStringName].ConnectionString; //Busca a connection string no arquivo App.config
-        private static readonly DbProviderFactory _factory = DbProviderFactories.GetFactory(_providerName); //Pega a factory lendo o providerName que está configurado no App.config
-
-        #endregion Attributes
-
-        #region Properties
-
-        /// <summary>
-        /// Define o prefixo do parametro pelo seu provider
-        /// </summary>
-        public static string ParameterPrefix
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="make"></param>
+        /// <param name="parms"></param>
+        /// <returns></returns>
+        public static T Get<T>(string sql, Func<IDataReader, T> make, object[] parms = null)
         {
-            get
+            using (var connection = factory.CreateConnection())
             {
-                switch (_providerName)
-                {
-                    // Microsoft Access não tem suporte a esse tipo de comando
-                    case "System.Data.OleDb": return "@";
-                    case "System.Data.SqlClient": return "@";
-                    case "System.Data.OracleClient": return ":";
-                    case "MySql.Data.MySqlClient": return "?";
+                connection.ConnectionString = connectionString;
 
-                    default:
-                        return "@";
-                }
-            }
-        }
-
-        #endregion Properties
-
-        /// <summary>
-        /// Método genérico para inserção
-        /// <param name="sql">Script SQL de Insert na tabela.</param>
-        /// <param name="parms">Array de parametros que serão adicionados no Insert. O seu valor está null por padrão.</param>
-        /// <param name="identitySelect">Marcação que define se precisa que retorne o id do item adicionado. O seu valor está true por padrão.</param>
-        /// <returns>Retorna o id selecionado ou 0.</returns>
-        public static int Insert(string sql, Dictionary<string, object> parms = null, bool identitySelect = true)
-        {
-            sql = string.Format(sql, ParameterPrefix);
-
-            using (var connection = _factory.CreateConnection())
-            {
-                connection.ConnectionString = _connectionString;
-
-                using (var command = _factory.CreateCommand())
-                {
-                    command.Connection = connection;
-                    command.SetParameters(parms); // Extension method
-                    command.CommandText = identitySelect ? sql.AppendIdentitySelect() : sql; // Extension method
-
-                    connection.Open();
-
-                    int id = 0;
-
-                    if (identitySelect)
-                        id = Convert.ToInt32(command.ExecuteScalar());
-                    else
-                        command.ExecuteNonQuery();
-
-                    return id;
-                }
-            }
-        }
-
-        /// <summary>
-        ///  Método genérico para update
-        /// </summary>
-        /// <param name="sql">Script SQL de Update na tabela.</param>
-        /// <param name="parms">Array de parametros que serão adicionados no Insert. O seu valor está null por padrão.</param>
-        public static void Update(string sql, Dictionary<string, object> parms = null)
-        {
-            sql = string.Format(sql, ParameterPrefix);
-
-            using (var connection = _factory.CreateConnection())
-            {
-                connection.ConnectionString = _connectionString;
-
-                using (var command = _factory.CreateCommand())
+                using (var command = factory.CreateCommand())
                 {
                     command.Connection = connection;
                     command.CommandText = sql;
-                    command.SetParameters(parms); //Extesion Method
+                    command.SetParameters(parms);  // Extension method
 
                     connection.Open();
 
-                    command.ExecuteNonQuery();
+                    T t = default(T);
+                    var reader = command.ExecuteReader();
+                    if (reader.Read())
+                        t = make(reader);
 
-                    command.Parameters.Clear();
+                    return t;
                 }
             }
         }
 
         /// <summary>
-        /// Método genérico para delete
+        /// Busca uma lista de itens de acordo com o comando Sql e parâmetros.
         /// </summary>
-        /// <param name="sql">Script SQL de Update na tabela.</param>
-        /// <param name="parms">Array de parametros que serão adicionados no Insert. O seu valor está null por padrão.</param>
-        public static void Delete(string sql, Dictionary<string, object> parms = null)
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="make"></param>
+        /// <param name="parms"></param>
+        /// <returns></returns>
+        public static List<T> GetAll<T>(string sql, Func<IDataReader, T> make, object[] parms = null)
         {
-            Update(sql, parms);
-        }
-
-        /// <summary>
-        /// Método genérico para select
-        /// </summary>
-        /// <param name="sql">Script SQL de SELECT na tabela.</param
-        /// <param name="make">Delegate que interpreta e atribui os valores da consulta para o objeto.</param>
-        /// <param name="parms">Array de parametros que serão adicionados no Insert. O seu valor está null por padrão.</param>
-        public static List<T> GetAll<T>(string sql, Func<IDataReader, T> Make, Dictionary<string, object> parms = null)
-        {
-            using (var connection = _factory.CreateConnection())
+            using (var connection = factory.CreateConnection())
             {
-                connection.ConnectionString = _connectionString;
+                connection.ConnectionString = connectionString;
 
-                using (var command = _factory.CreateCommand())
+                using (var command = factory.CreateCommand())
                 {
                     command.Connection = connection;
                     command.CommandText = sql;
-                    command.SetParameters(parms); //Extesion Method
+                    command.SetParameters(parms);
 
                     connection.Open();
 
@@ -146,12 +76,7 @@ namespace DonaLaura.Infra
                     var reader = command.ExecuteReader();
 
                     while (reader.Read())
-                    {
-                        var obj = Make(reader);
-                        list.Add(obj);
-                    }
-
-                    command.Parameters.Clear();
+                        list.Add(make(reader));
 
                     return list;
                 }
@@ -159,81 +84,107 @@ namespace DonaLaura.Infra
         }
 
         /// <summary>
-        /// Método genérico para select
+        /// Insere itens na base se dados
         /// </summary>
-        /// <param name="sql">Script SQL de SELECT na tabela.</param
-        /// <param name="make">Delegate que interpreta e atribui os valores da consulta para o objeto.</param>
-        /// <param name="parms">Array de parametros que serão adicionados no Insert. O seu valor está null por padrão.</param>
-        public static T Get<T>(string sql, Func<IDataReader, T> Make, Dictionary<string, object> parms = null)
+        /// <param name="sql"></param>
+        /// <param name="parms"></param>
+        /// <returns></returns>
+        public static long Insert(string sql, object[] parms = null)
         {
-            sql = string.Format(sql, ParameterPrefix);
-
-            using (var connection = _factory.CreateConnection())
+            using (var connection = factory.CreateConnection())
             {
-                connection.ConnectionString = _connectionString;
+                connection.ConnectionString = connectionString;
 
-                using (var command = _factory.CreateCommand())
+                using (var command = factory.CreateCommand())
+                {
+                    command.Connection = connection;
+                    command.SetParameters(parms);                     // Extension method  
+                    command.CommandText = sql.AppendIdentitySelect(); // Extension method                    
+
+                    connection.Open();
+                    return Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+        }
+
+        /// <summary>
+        /// Atualiza itens na base de dados
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parms"></param>
+        public static void Update(string sql, object[] parms = null)
+        {
+            using (var connection = factory.CreateConnection())
+            {
+                connection.ConnectionString = connectionString;
+
+                using (var command = factory.CreateCommand())
                 {
                     command.Connection = connection;
                     command.CommandText = sql;
-                    command.SetParameters(parms); //Extesion Method
+                    command.SetParameters(parms);
 
                     connection.Open();
-
-                    T t = default(T);
-
-                    var reader = command.ExecuteReader();
-
-                    if (reader.Read())
-                        t = Make(reader);
-
-                    command.Parameters.Clear();
-
-                    return t;
+                    command.ExecuteNonQuery();
                 }
             }
         }
 
-        #region Private methods
-
         /// <summary>
-        /// Métode de extensão da classe DbCommand que seta os parametros adicionando o seus respectivos prefixos.
+        /// Deleta itens na base de dados.
         /// </summary>
-        /// <param name="command">Classe command que o método utilizará para adcionar os parametros.</param>
-        /// <param name="parms">Parametros do script.</param>
-        private static void SetParameters(this DbCommand command, Dictionary<string, object> parms)
+        /// <param name="sql"></param>
+        /// <param name="parms"></param>
+        public static void Delete(string sql, object[] parms = null)
         {
-            if (parms != null)
-            {
-                foreach (var item in parms)
-                {
-                    var dbParameter = command.CreateParameter();
-                    dbParameter.ParameterName = item.Key;
-                    dbParameter.Value = item.Value;
-
-                    command.Parameters.Add(dbParameter);
-                }
-            }
+            Update(sql, parms);
         }
 
+
+
         /// <summary>
-        /// Concatena no script de inserção o select do id
+        /// Extension method: Adiciona a sintaxe especifica ao comando para recuperar o ID auto-incremento
         /// </summary>
-        /// <param name="sql">Script de Insert</param>
-        /// <returns></returns>
+        /// <param name="sql">Comando sql que será feita a adição.</param>
+        /// <returns>O comando Sql com o comando para recuperar o ID</returns>
         private static string AppendIdentitySelect(this string sql)
         {
-            switch (_providerName)
+            switch (dataProvider)
             {
                 // Microsoft Access não tem suporte a esse tipo de comando
                 case "System.Data.OleDb": return sql;
                 case "System.Data.SqlClient": return sql + ";SELECT SCOPE_IDENTITY()";
                 case "System.Data.OracleClient": return sql + ";SELECT MySequence.NEXTVAL FROM DUAL";
-                case "Firebird.Data.FbClient": return sql + ";GENERATOR(x=>x.identity)";
+                case "System.Data.SqlServerCe.4.0": return sql + "SELECT @@IDENTITY";
                 default: return sql + ";SELECT @@IDENTITY";
             }
         }
 
-        #endregion Private methods
+        /// <summary>
+        /// Extention method: Adiciona os parametros para o comando.
+        /// </summary>
+        /// <param name="command">Objeto que representa o comando</param>
+        /// <param name="parms">Lista de parametros</param>
+        private static void SetParameters(this DbCommand command, object[] parms)
+        {
+            if (parms != null && parms.Length > 0)
+            {
+                for (int i = 0; i < parms.Length; i += 2)
+                {
+                    string name = parms[i].ToString();
+
+                    if (parms[i + 1] is string && (string)parms[i + 1] == "")
+                        parms[i + 1] = null;
+
+                    object value = parms[i + 1] ?? DBNull.Value;
+
+                    var dbParameter = command.CreateParameter();
+                    dbParameter.ParameterName = name;
+                    dbParameter.Value = value;
+
+                    command.Parameters.Add(dbParameter);
+                }
+            }
+        }
     }
 }

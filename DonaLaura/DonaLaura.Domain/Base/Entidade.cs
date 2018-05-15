@@ -8,9 +8,9 @@ namespace DonaLaura.Domain.Modelo
 {
     public abstract class Entidade
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
-        public abstract void Validacoes();
+        public abstract void Validate();
 
         public override int GetHashCode()
         {

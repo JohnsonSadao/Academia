@@ -25,7 +25,7 @@ namespace DonaLaura.Domain.Test
         [Test]
         public void produto_Validacoes_ShouldBeOK()
         {
-            Action validar = () => validProduto.Validacoes();
+            Action validar = () => validProduto.Validate();
             validar.Should().NotThrow<ApplicationException>();
         }
 
@@ -34,7 +34,7 @@ namespace DonaLaura.Domain.Test
         {
             Produto produto = ObjectMother.ObterProdutoValido();
             produto.Nome = "asd";
-            Action validar = () => produto.Validacoes();
+            Action validar = () => produto.Validate();
             validar.Should().Throw<NomeException>();
         }
 
@@ -45,7 +45,7 @@ namespace DonaLaura.Domain.Test
             Produto produto = ObjectMother.ObterProdutoValido();
             produto.DataFabricacao = DateTime.Now;
             produto.DataValidade = DateTime.Now.AddDays(-8);
-            Action validar = () => produto.Validacoes();
+            Action validar = () => produto.Validate();
             validar.Should().Throw<DataValidadeException>();
         }
 
@@ -55,7 +55,7 @@ namespace DonaLaura.Domain.Test
             Produto produto = ObjectMother.ObterProdutoValido();
             produto.PrecoCusto = 2.50;
             produto.PrecoVenda = 2.00;
-            Action validar = () => produto.Validacoes();
+            Action validar = () => produto.Validate();
             validar.Should().Throw<CustoException>();
         }
 

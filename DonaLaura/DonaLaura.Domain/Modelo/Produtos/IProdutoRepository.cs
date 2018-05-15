@@ -1,5 +1,4 @@
-﻿using DonaLaura.Domain.Base;
-using DonaLaura.Domain.Modelo;
+﻿using DonaLaura.Domain.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace DonaLaura.Infra.Data.Produtos
 {
-    public interface IProdutoRepository: IRepository<Produto>
+    public interface IProdutoRepository
     {
-        bool Existe(string nome);
-
-        bool RegistroComDependencia(int id);
+        Produto Save(Produto produto);
+        Produto Update(Produto produto);
+        Produto Get(long id);
+        IEnumerable<Produto> GetAll();
+        void Delete(Produto produto);
+        bool RegisterWithDependency(int id);
     }
 }

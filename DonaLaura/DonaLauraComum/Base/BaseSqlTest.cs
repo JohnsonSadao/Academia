@@ -10,8 +10,10 @@ namespace DonaLauraComum.Base
 
     public static class BaseSqlTest
     {
-        private const string RECREATE_PRODUTO_TABLE = "TRUNCATE TABLE [dbo].[TBProduto] ";
-        private const string INSERT_PRODUTO = "INSERT INTO TBProduto(Nome,PrecoVenda,PrecoCusto,Disponibilidade,DataFabricacao,DataValidade) VALUES ('Post de Teste', GETDATE())";
+        //private const string RECREATE_VENDA_TABLE = "TRUNCATE TABLE [dbo].[TBVenda] ";
+        private const string RECREATE_PRODUTO_TABLE = "TRUNCATE TABLE [dbo].[TBVenda];" +
+                                                      "DELETE FROM TBProduto DBCC CHECKIDENT('DBDonaLaura.Dbo.TBProduto',RESEED,0)";
+        private const string INSERT_PRODUTO = "INSERT INTO TBProduto(Nome,PrecoVenda,PrecoCusto,Disponibilidade,DataFabricacao,DataValidade) VALUES ('Arroz', 2.90, 1.90, 1, '2018-07-06', '2018-08-06')";
 
         public static void SeedDatabase()
         {

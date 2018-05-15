@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DonaLaura.Domain.Exceptions
 {
-    public class NomeException : ApplicationException
+    public class NomeException : Exception
     {
          public NomeException() : base("Nome deve ser maior que 4 caracteres")
         {

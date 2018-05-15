@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DonaLaura.Domain.Exceptions
 {
-    public class DataValidadeException: ApplicationException
+    public class DataValidadeException: Exception
     {
         public DataValidadeException() : base("A data de validade deve ser maior que a data de fabricação.")
         {
