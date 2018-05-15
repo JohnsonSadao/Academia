@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Produtos\ProdutoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vendas\VendaRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

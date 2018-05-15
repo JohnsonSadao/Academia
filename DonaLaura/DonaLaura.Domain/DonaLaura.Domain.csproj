@@ -50,6 +50,7 @@
     <Compile Include="Exceptions\Vendas\ValidadeException.cs" />
     <Compile Include="Modelo\Produtos\IProdutoRepository.cs" />
     <Compile Include="Modelo\Produtos\Produto.cs" />
+    <Compile Include="Modelo\Vendas\IVendaRepository.cs" />
     <Compile Include="Modelo\Vendas\Venda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

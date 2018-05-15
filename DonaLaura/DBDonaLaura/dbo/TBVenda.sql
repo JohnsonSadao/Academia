@@ -5,5 +5,5 @@
     [NomeCliente] VARCHAR(50) NULL, 
     [Quantidade] INT NULL,
 	CONSTRAINT [PK_TBVenda] PRIMARY KEY CLUSTERED ([Id] ASC),
-	CONSTRAINT [FK_TBVenda_TBProduto] FOREIGN KEY ([ProdutoId]) REFERENCES [dbo].[TBProduto] ([Id]),
+	FOREIGN KEY (ProdutoId) REFERENCES TBProduto(Id)
 )

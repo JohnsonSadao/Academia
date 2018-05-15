@@ -14,6 +14,7 @@ namespace DonaLauraComum.Vendas
         {
             Venda venda = new Venda();
             venda.produtoVenda = ObjectMotherProduto.getValidProduto();
+            venda.produtoVenda.Id = 1;
             venda.cliente = "Pedro";
             return venda;
         }

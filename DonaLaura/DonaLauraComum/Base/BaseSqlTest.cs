@@ -12,11 +12,13 @@ namespace DonaLauraComum.Base
     {
         private const string RECREATE_PRODUTO_TABLE = "TRUNCATE TABLE [dbo].[TBVenda]; DELETE FROM TBProduto DBCC CHECKIDENT('DBDonaLaura.Dbo.TBProduto',RESEED,0)";
         private const string INSERT_PRODUTO = "INSERT INTO TBProduto(Nome,PrecoVenda,PrecoCusto,Disponibilidade,DataFabricacao,DataValidade) VALUES ('Arroz', 2.90, 1.90, 1, '2018-07-06', '2018-08-06')";
+        private const string INSERT_VENDA = "INSERT INTO TBVenda(ProdutoId,NomeCliente,Quantidade) VALUES (1,'Pedro',3)";
 
         public static void SeedDatabase()
         {
             Db.Update(RECREATE_PRODUTO_TABLE);
             Db.Update(INSERT_PRODUTO);
+            Db.Update(INSERT_VENDA);
         }
     }
 
