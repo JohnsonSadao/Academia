@@ -45,8 +45,12 @@
     <Compile Include="Exceptions\Produtos\DataValidadeException.cs" />
     <Compile Include="Exceptions\Produtos\NomeException.cs" />
     <Compile Include="Base\Entidade.cs" />
+    <Compile Include="Exceptions\Vendas\DisponibilidadeException.cs" />
+    <Compile Include="Exceptions\Vendas\QuantidadeInvalidException.cs" />
+    <Compile Include="Exceptions\Vendas\ValidadeException.cs" />
     <Compile Include="Modelo\Produtos\IProdutoRepository.cs" />
     <Compile Include="Modelo\Produtos\Produto.cs" />
+    <Compile Include="Modelo\Vendas\Venda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

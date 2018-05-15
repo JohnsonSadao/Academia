@@ -30,7 +30,7 @@ namespace DonaLaura.Infra.Test.Produtos
         [Test]
         public void ProdutoRespository_Add_ShouldBeOk()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.Id = 2;
             _repository.Save(produto);
             var produtos =  _repository.GetAll();
@@ -40,7 +40,7 @@ namespace DonaLaura.Infra.Test.Produtos
         [Test]
         public void ProdutoRepository_Update_ShouldBeOk()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.Id = 2;
             var produtoEditar = _repository.Update(produto);
             produtoEditar.Nome.Should().Be(produto.Nome);
@@ -56,7 +56,7 @@ namespace DonaLaura.Infra.Test.Produtos
         [Test]
         public void ProdutoRepository_Delete_ShouldBeOk()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.Id = 1;
 
             _repository.Delete(produto);
@@ -75,7 +75,7 @@ namespace DonaLaura.Infra.Test.Produtos
         [Test]
         public void ProdutoRespository_AddValidate_ShouldBeFail()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.Id = 2;
             produto.Nome = "asd";
             Action salvar = () => _repository.Save(produto);
@@ -85,7 +85,7 @@ namespace DonaLaura.Infra.Test.Produtos
         [Test]
         public void ProdutoRepository_Update_ShouldBeFail()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.Id = 0;
             Action update = () => _repository.Update(produto);
             update.Should().Throw<IdentifierUndefinedException>();
@@ -101,7 +101,7 @@ namespace DonaLaura.Infra.Test.Produtos
         [Test]
         public void ProdutoRepository_Delete_ShouldBeFail()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             Action delete = () => _repository.Delete(produto);
             delete.Should().Throw<IdentifierUndefinedException>();
         }

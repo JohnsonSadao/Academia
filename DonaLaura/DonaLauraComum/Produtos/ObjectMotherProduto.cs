@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DonaLauraComum.Produtos
 {
-    public static class ObjectMother
+    public static class ObjectMotherProduto
     {
-        public static Produto ObterProdutoValido()
+        public static Produto getValidProduto()
         {
             Produto produto = new Produto();
             produto.Nome = "Arroz";

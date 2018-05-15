@@ -19,7 +19,7 @@ namespace DonaLaura.Domain.Test
         [SetUp]
         public void Inicializar()
         {
-            validProduto = ObjectMother.ObterProdutoValido();
+            validProduto = ObjectMotherProduto.getValidProduto();
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace DonaLaura.Domain.Test
         [Test]
         public void produto_ValidacoesNome_ShouldBeFail()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.Nome = "asd";
             Action validar = () => produto.Validate();
             validar.Should().Throw<NomeException>();
@@ -42,7 +42,7 @@ namespace DonaLaura.Domain.Test
         [Test]
         public void produto_ValidacoesData_ShouldBeFail()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.DataFabricacao = DateTime.Now;
             produto.DataValidade = DateTime.Now.AddDays(-8);
             Action validar = () => produto.Validate();
@@ -52,7 +52,7 @@ namespace DonaLaura.Domain.Test
         [Test]
         public void produto_ValidacoesCusto_ShouldBeFail()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.PrecoCusto = 2.50;
             produto.PrecoVenda = 2.00;
             Action validar = () => produto.Validate();

@@ -29,7 +29,7 @@ namespace DonaLaura.Application.Test.Produtos
         [Test]
         public void ProdutoService_Add_ShouldBeOK()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             _mockRepository.Setup(m => m.Save(produto)).Returns(new Produto() { Id = 1 });
             ProdutoService service = new ProdutoService(_mockRepository.Object);
 
@@ -43,7 +43,7 @@ namespace DonaLaura.Application.Test.Produtos
         [Test]
         public void ProdutoService_Update_ShouldBeOK()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.Id = 2;
 
             _mockRepository.Setup(m => m.Update(produto)).Returns(new Produto()
@@ -66,7 +66,7 @@ namespace DonaLaura.Application.Test.Produtos
         public void ProdutoService_Get_ShouldBeOk()
         {
             
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.Id = 3;
                         
             _mockRepository.Setup(m => m.Get(3)).Returns(produto);
@@ -95,7 +95,7 @@ namespace DonaLaura.Application.Test.Produtos
         [Test]
         public void ProdutoService_Delete_ShouldBeOk()
         {
-            Produto modelo = ObjectMother.ObterProdutoValido();
+            Produto modelo = ObjectMotherProduto.getValidProduto();
             modelo.Id = 1;
             
             _mockRepository.Setup(m => m.Delete(modelo));
@@ -113,7 +113,7 @@ namespace DonaLaura.Application.Test.Produtos
         public void ProdutoService_Add_ShouldBeFail()
         {
 
-            Produto modelo = ObjectMother.ObterProdutoValido();
+            Produto modelo = ObjectMotherProduto.getValidProduto();
             modelo.Nome = "asd";
             
             ProdutoService service = new ProdutoService(_mockRepository.Object);
@@ -128,7 +128,7 @@ namespace DonaLaura.Application.Test.Produtos
         public void ProdutoService_Update_Invalid_Id_ShouldBeFail()
         {
 
-            Produto modelo = ObjectMother.ObterProdutoValido();
+            Produto modelo = ObjectMotherProduto.getValidProduto();
             modelo.Id = 0;
             
             ProdutoService service = new ProdutoService(_mockRepository.Object);

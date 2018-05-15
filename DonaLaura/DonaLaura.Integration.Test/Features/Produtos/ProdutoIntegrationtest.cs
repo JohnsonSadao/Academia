@@ -34,7 +34,7 @@ namespace DonaLaura.Integration.Test.Features.Produtos
         public void ProdutoIntegration_Add_ShouldBeOk()
         {
             //Executa
-            Produto produto = _service.Save(ObjectMother.ObterProdutoValido());
+            Produto produto = _service.Save(ObjectMotherProduto.getValidProduto());
 
             //Saída
             produto.Id.Should().BeGreaterThan(0);
@@ -49,7 +49,7 @@ namespace DonaLaura.Integration.Test.Features.Produtos
         [Test]
         public void ProdutoIntegration_Add_Nome_ShouldBeFail()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             produto.Nome = "asd";
 
             Action comparison = () => _service.Save(produto);
@@ -61,7 +61,7 @@ namespace DonaLaura.Integration.Test.Features.Produtos
         public void ProdutoIntegration_Update_ShouldBeOk()
         {
             //Cenário
-            Produto modelo = ObjectMother.ObterProdutoValido();
+            Produto modelo = ObjectMotherProduto.getValidProduto();
             modelo.Id = 1;
 
             //Executa
@@ -77,7 +77,7 @@ namespace DonaLaura.Integration.Test.Features.Produtos
         public void ProdutoIntegration_Update_Invalid_Id_ShouldBeFail()
         {
             //Cenário
-            Produto modelo = ObjectMother.ObterProdutoValido();
+            Produto modelo = ObjectMotherProduto.getValidProduto();
 
             //Executa
             Action comparison = () => _service.Update(modelo);
@@ -90,7 +90,7 @@ namespace DonaLaura.Integration.Test.Features.Produtos
         public void ProdutoIntegration_Update_Nome_ShouldBeFail()
         {
             //Cenário
-            Produto modelo = ObjectMother.ObterProdutoValido();
+            Produto modelo = ObjectMotherProduto.getValidProduto();
             modelo.Id = 1;
             modelo.Nome = "as";
 
@@ -149,7 +149,7 @@ namespace DonaLaura.Integration.Test.Features.Produtos
         [Test]
         public void ProdutoIntegration_Delete_ShouldBeOk()
         {
-            Produto produto = ObjectMother.ObterProdutoValido();
+            Produto produto = ObjectMotherProduto.getValidProduto();
             //Executa
             _service.Delete(produto);
 
@@ -165,7 +165,7 @@ namespace DonaLaura.Integration.Test.Features.Produtos
         public void ProdutoIntegration_Delete_ShouldBeFail()
         {
             //Executa
-            Action comparison = () => _service.Delete(ObjectMother.ObterProdutoValido());
+            Action comparison = () => _service.Delete(ObjectMotherProduto.getValidProduto());
 
             //Saída
             comparison.Should().Throw<IdentifierUndefinedException>();
