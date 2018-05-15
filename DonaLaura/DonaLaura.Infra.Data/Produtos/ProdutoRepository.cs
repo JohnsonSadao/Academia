@@ -26,7 +26,6 @@ namespace DonaLaura.Infra.Data.Produtos
 
         public Produto Update(Produto produto)
         {
-            produto.Validate();
             if (produto.Id < 1)
                 throw new IdentifierUndefinedException();
             string sql = "UPDATE TBProduto SET Nome = @Nome, PrecoVenda = @PrecoVenda, " +

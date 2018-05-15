@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.Infra.Data.Test",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.Application", "DonaLaura.Application\DonaLaura.Application.csproj", "{6A5CDA98-9515-4CEC-8F18-0BE938854313}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.Application.Test", "DonaLaura.Application.Test\DonaLaura.Application.Test.csproj", "{07A8B5B4-8224-4725-9B70-5E3E5A2EB900}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonaLaura.Integration.Test", "DonaLaura.Integration.Test\DonaLaura.Integration.Test.csproj", "{164D6579-5D8D-46D3-BCD4-D6F21E053AFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,14 @@ Global
 		{6A5CDA98-9515-4CEC-8F18-0BE938854313}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A5CDA98-9515-4CEC-8F18-0BE938854313}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A5CDA98-9515-4CEC-8F18-0BE938854313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07A8B5B4-8224-4725-9B70-5E3E5A2EB900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07A8B5B4-8224-4725-9B70-5E3E5A2EB900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07A8B5B4-8224-4725-9B70-5E3E5A2EB900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07A8B5B4-8224-4725-9B70-5E3E5A2EB900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{164D6579-5D8D-46D3-BCD4-D6F21E053AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{164D6579-5D8D-46D3-BCD4-D6F21E053AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{164D6579-5D8D-46D3-BCD4-D6F21E053AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{164D6579-5D8D-46D3-BCD4-D6F21E053AFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +110,8 @@ Global
 		{BE3918D8-5630-4D07-A30E-B5BEAA121317} = {CE62A0CE-9838-48F7-B44D-CC2257FF780C}
 		{5A26BDF0-F1AE-484B-A624-DDB6E9344B52} = {CE62A0CE-9838-48F7-B44D-CC2257FF780C}
 		{6A5CDA98-9515-4CEC-8F18-0BE938854313} = {A8CFD2ED-AF6F-43E2-B7DF-8755FBEE163A}
+		{07A8B5B4-8224-4725-9B70-5E3E5A2EB900} = {CE62A0CE-9838-48F7-B44D-CC2257FF780C}
+		{164D6579-5D8D-46D3-BCD4-D6F21E053AFB} = {CE62A0CE-9838-48F7-B44D-CC2257FF780C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {829CEBBB-86A5-42D3-8152-F7BA045211EF}
