@@ -68,8 +68,7 @@ namespace DonaLaura.Infra.Data.Vendas
 
         public Venda Save(Venda venda)
         {
-            if (venda.Id < 1)
-                throw new IdentifierUndefinedException();
+            
             venda.Validate();
             string sql = "INSERT INTO TBVenda(ProdutoId,NomeCliente,Quantidade) VALUES (@ProdutoId, @NomeCliente, @Quantidade)";
             venda.Id = Db.Insert(sql, Take(venda, false));
