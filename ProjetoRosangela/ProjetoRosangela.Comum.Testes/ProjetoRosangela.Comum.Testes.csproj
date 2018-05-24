@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caracteristicas\Emprestimos\ObjetoMaeEmprestimo.cs" />
     <Compile Include="Caracteristicas\Livros\ObjetoMaeLivro.cs" />
     <Compile Include="Comum\BaseSQLTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

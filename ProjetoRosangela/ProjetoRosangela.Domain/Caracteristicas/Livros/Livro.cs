@@ -24,6 +24,8 @@ namespace ProjetoRosangela.Domain.Caracteristicas.Livros
                 throw new TemaCaracteresException();
             if (Autor.Length < 4)
                 throw new AutorCaracteresException();
+            if (Volume < 1)
+                throw new VolumeException();
         }
     }
 }
