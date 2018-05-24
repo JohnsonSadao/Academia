@@ -12,10 +12,18 @@ namespace ProjetoRosangela.Domain.Caracteristicas.Livros
         public string Titulo { get; set; }
         public string Tema { get; set; }
         public string Autor { get; set; }
+        public int Volume { get; set; }
+        public DateTime DataPublicação { get; set; }
+        public bool Disponibilidade { get; set; }
 
         public override void Validar()
         {
-            throw new NotImplementedException();
+            if (Titulo.Length < 4)
+                throw new TituloCaracteresException();
+            if (Tema.Length < 4)
+                throw new TemaCaracteresException();
+            if (Autor.Length < 4)
+                throw new AutorCaracteresException();
         }
     }
 }

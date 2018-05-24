@@ -41,7 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Caracteristicas\Base\Entidade.cs" />
+    <Compile Include="Caracteristicas\Excecoes\BusinessException.cs" />
+    <Compile Include="Caracteristicas\Livros\AutorCaracteresException.cs" />
     <Compile Include="Caracteristicas\Livros\Livro.cs" />
+    <Compile Include="Caracteristicas\Livros\TemaCaracteresException.cs" />
+    <Compile Include="Caracteristicas\Livros\TituloCaracteresException.cs" />
+    <Compile Include="Caracteristicas\Livros\VolumeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
