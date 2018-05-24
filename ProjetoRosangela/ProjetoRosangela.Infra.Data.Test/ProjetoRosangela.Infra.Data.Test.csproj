@@ -6,11 +6,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D4135400-435C-4198-AFA4-29A402441FE7}</ProjectGuid>
+    <ProjectGuid>{C9121B07-6AB0-4BA0-9698-43FD9F9993BB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProjetoRosangela.Comum.Testes</RootNamespace>
-    <AssemblyName>ProjetoRosangela.Comum.Testes</AssemblyName>
+    <RootNamespace>ProjetoRosangela.Infra.Data.Test</RootNamespace>
+    <AssemblyName>ProjetoRosangela.Infra.Data.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -61,22 +61,25 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Caracteristicas\Emprestimos\ObjetoMaeEmprestimo.cs" />
-    <Compile Include="Caracteristicas\Livros\ObjetoMaeLivro.cs" />
-    <Compile Include="Comum\BaseSQLTest.cs" />
+    <Compile Include="Caracteristicas\Livros\LivroInfraTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProjetoRosangela.Comum.Testes\ProjetoRosangela.Comum.Testes.csproj">
+      <Project>{D4135400-435C-4198-AFA4-29A402441FE7}</Project>
+      <Name>ProjetoRosangela.Comum.Testes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjetoRosangela.Domain\ProjetoRosangela.Domain.csproj">
-      <Project>{7FD9BF4E-5381-40AD-AC15-FB0AE57F39B7}</Project>
+      <Project>{7fd9bf4e-5381-40ad-ac15-fb0ae57f39b7}</Project>
       <Name>ProjetoRosangela.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProjetoRosangela.Infra\ProjetoRosangela.Infra.csproj">
-      <Project>{3D4C5AEB-18C5-441A-80A1-87C18A45A877}</Project>
-      <Name>ProjetoRosangela.Infra</Name>
+    <ProjectReference Include="..\ProjetoRosangela.Infra.Data\ProjetoRosangela.Infra.Data.csproj">
+      <Project>{5BE8E049-1E15-4E93-BA76-01CA33A02355}</Project>
+      <Name>ProjetoRosangela.Infra.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

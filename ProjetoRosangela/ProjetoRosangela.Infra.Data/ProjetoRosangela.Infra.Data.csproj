@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7FD9BF4E-5381-40AD-AC15-FB0AE57F39B7}</ProjectGuid>
+    <ProjectGuid>{5BE8E049-1E15-4E93-BA76-01CA33A02355}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProjetoRosangela.Domain</RootNamespace>
-    <AssemblyName>ProjetoRosangela.Domain</AssemblyName>
+    <RootNamespace>ProjetoRosangela.Infra.Data</RootNamespace>
+    <AssemblyName>ProjetoRosangela.Infra.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,19 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Caracteristicas\Base\Entidade.cs" />
-    <Compile Include="Caracteristicas\Emprestimos\DisponibilidadeException.cs" />
-    <Compile Include="Caracteristicas\Emprestimos\Emprestimo.cs" />
-    <Compile Include="Caracteristicas\Excecoes\BusinessException.cs" />
-    <Compile Include="Caracteristicas\Excecoes\IdentificadorIndefinidoException.cs" />
-    <Compile Include="Caracteristicas\Livros\AutorCaracteresException.cs" />
-    <Compile Include="Caracteristicas\Livros\ILivroRepository.cs" />
-    <Compile Include="Caracteristicas\Livros\Livro.cs" />
-    <Compile Include="Caracteristicas\Livros\TemaCaracteresException.cs" />
-    <Compile Include="Caracteristicas\Livros\TituloCaracteresException.cs" />
-    <Compile Include="Caracteristicas\Livros\VolumeException.cs" />
+    <Compile Include="Caracteristicas\Livros\LivroRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ProjetoRosangela.Domain\ProjetoRosangela.Domain.csproj">
+      <Project>{7FD9BF4E-5381-40AD-AC15-FB0AE57F39B7}</Project>
+      <Name>ProjetoRosangela.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjetoRosangela.Infra\ProjetoRosangela.Infra.csproj">
+      <Project>{3d4c5aeb-18c5-441a-80a1-87c18a45a877}</Project>
+      <Name>ProjetoRosangela.Infra</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

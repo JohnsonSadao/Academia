@@ -14,6 +14,5 @@ namespace DonaLaura.Infra.Data.Produtos
         Produto Get(long id);
         IEnumerable<Produto> GetAll();
         void Delete(Produto produto);
-        bool RegisterWithDependency(int id);
     }
 }
