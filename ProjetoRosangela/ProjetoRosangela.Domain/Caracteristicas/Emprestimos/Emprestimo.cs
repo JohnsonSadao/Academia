@@ -24,6 +24,7 @@ namespace ProjetoRosangela.Domain.Caracteristicas.Emprestimos
         {
             if (Livro.Disponibilidade == false)
                 throw new DisponibilidadeException();
+
         }
     }
 }

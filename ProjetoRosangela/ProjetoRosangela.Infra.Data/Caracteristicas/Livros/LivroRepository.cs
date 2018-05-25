@@ -64,7 +64,7 @@ namespace ProjetoRosangela.Infra.Data.Caracteristicas.Livros
               Titulo = reader["Titulo"].ToString(),
               Tema = reader["Tema"].ToString(),
               Volume = Convert.ToInt32(reader["Volume"]),
-              DataPublicação = Convert.ToDateTime(reader["DataPublicacao"]),
+              DataPublicacao = Convert.ToDateTime(reader["DataPublicacao"]),
               Disponibilidade = Convert.ToBoolean(reader["Disponibilidade"]),
           };
 
@@ -88,7 +88,7 @@ namespace ProjetoRosangela.Infra.Data.Caracteristicas.Livros
                 "@Titulo", livro.Titulo,
                 "@Tema", livro.Tema,
                 "@Volume", livro.Volume,
-                "@DataPublicacao", livro.DataPublicação,
+                "@DataPublicacao", livro.DataPublicacao,
                 "@Disponibilidade", livro.Disponibilidade,
                 };
             }
@@ -100,7 +100,7 @@ namespace ProjetoRosangela.Infra.Data.Caracteristicas.Livros
                 "@Titulo", livro.Titulo,
                 "@Tema", livro.Tema,
                 "@Volume", livro.Volume,
-                "@DataPublicacao", livro.DataPublicação,
+                "@DataPublicacao", livro.DataPublicacao,
                 "@Disponibilidade", livro.Disponibilidade,
                 };
             }

@@ -43,6 +43,7 @@
     <Compile Include="Caracteristicas\Base\Entidade.cs" />
     <Compile Include="Caracteristicas\Emprestimos\DisponibilidadeException.cs" />
     <Compile Include="Caracteristicas\Emprestimos\Emprestimo.cs" />
+    <Compile Include="Caracteristicas\Emprestimos\IEmprestimoRepository.cs" />
     <Compile Include="Caracteristicas\Excecoes\BusinessException.cs" />
     <Compile Include="Caracteristicas\Excecoes\IdentificadorIndefinidoException.cs" />
     <Compile Include="Caracteristicas\Livros\AutorCaracteresException.cs" />

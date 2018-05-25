@@ -13,7 +13,7 @@ namespace ProjetoRosangela.Domain.Caracteristicas.Livros
         public string Tema { get; set; }
         public string Autor { get; set; }
         public int Volume { get; set; }
-        public DateTime DataPublicação { get; set; }
+        public DateTime DataPublicacao { get; set; }
         public bool Disponibilidade { get; set; }
 
         public override void Validar()

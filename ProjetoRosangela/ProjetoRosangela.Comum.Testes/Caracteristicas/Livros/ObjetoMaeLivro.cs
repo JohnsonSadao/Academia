@@ -16,7 +16,7 @@ namespace ProjetoRosangela.Comum.Testes.Caracteristicas.Livros
             livro.Autor = "Machado de Assis";
             livro.Tema = "Drama";
             livro.Volume = 1;
-            livro.DataPublicação = DateTime.Now.AddDays(-40);
+            livro.DataPublicacao = DateTime.Now.AddDays(-40);
             livro.Disponibilidade = true;
             return livro;
         }
