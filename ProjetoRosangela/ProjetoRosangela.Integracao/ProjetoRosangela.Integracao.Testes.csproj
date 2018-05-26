@@ -71,11 +71,30 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Caracteristicas\Livros\LivroIntegracaoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProjetoRosangela.Aplicacao\ProjetoRosangela.Aplicacao.csproj">
+      <Project>{5911CB87-8075-4DDE-BBA6-4BF8C88AC981}</Project>
+      <Name>ProjetoRosangela.Aplicacao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjetoRosangela.Comum.Testes\ProjetoRosangela.Comum.Testes.csproj">
+      <Project>{D4135400-435C-4198-AFA4-29A402441FE7}</Project>
+      <Name>ProjetoRosangela.Comum.Testes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjetoRosangela.Domain\ProjetoRosangela.Domain.csproj">
+      <Project>{7FD9BF4E-5381-40AD-AC15-FB0AE57F39B7}</Project>
+      <Name>ProjetoRosangela.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjetoRosangela.Infra.Data\ProjetoRosangela.Infra.Data.csproj">
+      <Project>{5BE8E049-1E15-4E93-BA76-01CA33A02355}</Project>
+      <Name>ProjetoRosangela.Infra.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
