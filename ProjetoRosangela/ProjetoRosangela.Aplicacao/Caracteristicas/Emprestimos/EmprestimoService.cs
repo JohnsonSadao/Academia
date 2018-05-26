@@ -19,9 +19,9 @@ namespace ProjetoRosangela.Aplicacao.Caracteristicas.Emprestimos
 
         public Emprestimo Atualizar(Emprestimo emprestimo)
         {
-            emprestimo.Validar();
             if (emprestimo.Id < 1)
                 throw new IdentificadorIndefinidoException();
+            emprestimo.Validar();
             return _repository.Atualizar(emprestimo);
         }
 
@@ -46,7 +46,8 @@ namespace ProjetoRosangela.Aplicacao.Caracteristicas.Emprestimos
 
         public Emprestimo Salvar(Emprestimo emprestimo)
         {
-            throw new NotImplementedException();
+            emprestimo.Validar();
+            return _repository.Salvar(emprestimo);
         }
     }
 }
