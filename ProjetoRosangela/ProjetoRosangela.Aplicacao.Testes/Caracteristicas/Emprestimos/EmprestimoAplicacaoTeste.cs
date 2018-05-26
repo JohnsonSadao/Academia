@@ -134,21 +134,6 @@ namespace ProjetoRosangela.Aplicacao.Testes.Caracteristicas.Emprestimos
             update.Should().Throw<IdentificadorIndefinidoException>();
             _mockRepository.VerifyNoOtherCalls();
         }
-
-        [Test]
-        public void PostService_Get_Invalid_Id_ShouldBeFail()
-        {
-
-            EmprestimoService service = new EmprestimoService(_mockRepository.Object);
-            Emprestimo emprestimo = new Emprestimo()
-            {
-                Id = 0
-            };
-            Action comparison = () => service.Atualizar(emprestimo);
-
-            comparison.Should().Throw<IdentificadorIndefinidoException>();
-            _mockRepository.VerifyNoOtherCalls();
-        }
     }
 }
 

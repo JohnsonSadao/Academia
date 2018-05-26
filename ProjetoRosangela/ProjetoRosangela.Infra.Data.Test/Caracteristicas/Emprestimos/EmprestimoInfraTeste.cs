@@ -90,7 +90,7 @@ namespace ProjetoRosangela.Infra.Data.Test.Caracteristicas.Emprestimos
         }
 
         [Test]
-        public void EmprestimoRepository_get_ShouldBeFail()
+        public void EmprestimoRepository_Get_ShouldBeFail()
         {
             Action get = () => _repository.Obter(0);
             get.Should().Throw<IdentificadorIndefinidoException>();

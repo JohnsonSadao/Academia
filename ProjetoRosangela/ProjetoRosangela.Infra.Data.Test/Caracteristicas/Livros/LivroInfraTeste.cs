@@ -89,7 +89,7 @@ namespace ProjetoRosangela.Infra.Data.Test.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroRepository_get_ShouldBeFail()
+        public void LivroRepository_Get_ShouldBeFail()
         {
             Action get = () => _repository.Obter(0);
             get.Should().Throw<IdentificadorIndefinidoException>();

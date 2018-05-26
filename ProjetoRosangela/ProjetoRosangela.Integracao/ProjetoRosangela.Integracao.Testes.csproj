@@ -71,6 +71,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caracteristicas\Emprestimos\EmprestimosIntegracaoTeste.cs" />
     <Compile Include="Caracteristicas\Livros\LivroIntegracaoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

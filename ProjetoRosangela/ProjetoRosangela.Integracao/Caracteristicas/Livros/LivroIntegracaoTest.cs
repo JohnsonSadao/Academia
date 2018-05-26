@@ -30,7 +30,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_Add_ShouldBeOk()
+        public void LivroIntegracao_Adicionar_ShouldBeOk()
         {
             //Executa
             Livro livro = _service.Salvar(ObjetoMaeLivro.obterLivro());
@@ -46,7 +46,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_Add_Titulo_ShouldBeFail()
+        public void LivroIntegracao_Adicionar_Titulo_ShouldBeFail()
         {
             Livro livro = ObjetoMaeLivro.obterLivro();
             livro.Autor = "asd";
@@ -57,7 +57,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_Update_ShouldBeOk()
+        public void LivroIntegracao_Atualizar_ShouldBeOk()
         {
             //Cenário
             Livro modelo = ObjetoMaeLivro.obterLivro();
@@ -73,7 +73,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_Update_Invalid_Id_ShouldBeFail()
+        public void LivroIntegracao_Atualizar_Id_Invalido_ShouldBeFail()
         {
             //Cenário
             Livro modelo = ObjetoMaeLivro.obterLivro();
@@ -86,7 +86,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_Update_Nome_ShouldBeFail()
+        public void LivroIntegracao_Atualizar_Titulo_ShouldBeFail()
         {
             //Cenário
             Livro modelo = ObjetoMaeLivro.obterLivro();
@@ -101,7 +101,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_Get_ShouldBeOk()
+        public void LivroIntegracao_Obter_ShouldBeOk()
         {
             //Executa
             Livro post = _service.Obter(1);
@@ -115,7 +115,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_Get_ShouldBeFail()
+        public void LivroIntegracao_Obter_ShouldBeFail()
         {
             //Executa
             Livro livro = _service.Obter(3);
@@ -125,7 +125,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_Get_Invalid_Id_ShouldBeFail()
+        public void LivroIntegracao_Obter_Invalid_Id_ShouldBeFail()
         {
             //Executa
             Action comparison = () => _service.Obter(-1);
@@ -135,7 +135,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_GetAll_ShouldBeOk()
+        public void LivroIntegracao_ObterAll_ShouldBeOk()
         {
             //Executa
             List<Livro> posts = _service.ObterTodos() as List<Livro>;
@@ -146,7 +146,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_Delete_ShouldBeOk()
+        public void LivroIntegracao_Delete_ShouldBeOk()
         {
             Livro livro = ObjetoMaeLivro.obterLivro();
             livro.Id = 2;
@@ -162,7 +162,7 @@ namespace ProjetoRosangela.Integracao.Caracteristicas.Livros
         }
 
         [Test]
-        public void LivroIntegration_Delete_ShouldBeFail()
+        public void LivroIntegracao_Delete_ShouldBeFail()
         {
             //Executa
             Action comparison = () => _service.Deletar(ObjetoMaeLivro.obterLivro());
