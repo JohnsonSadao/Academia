@@ -16,7 +16,12 @@ namespace ProjectPatricia.Domain.Features.Employees
 
         public void Validate()
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(Name))
+                throw new EmployeeEmptyNameException();
+            if (string.IsNullOrEmpty(Branch))
+                throw new EmployeeEmptyBranchException();
+            if (string.IsNullOrEmpty(Position))
+                throw new EmployeeEmptyPositionException();
         }
     }
 }
