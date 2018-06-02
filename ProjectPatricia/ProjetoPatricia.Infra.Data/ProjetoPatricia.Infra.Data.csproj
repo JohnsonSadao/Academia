@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B4BE96A-6C5E-4F32-9736-8B77C9376CDA}</ProjectGuid>
+    <ProjectGuid>{1CD27B69-13FC-4D81-801B-695C4D3900B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProjectPatricia.Domain</RootNamespace>
-    <AssemblyName>ProjectPatricia.Domain</AssemblyName>
+    <RootNamespace>ProjetoPatricia.Infra.Data</RootNamespace>
+    <AssemblyName>ProjetoPatricia.Infra.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,30 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\BusinessException.cs" />
-    <Compile Include="Exceptions\IdentifierUndefinedException.cs" />
-    <Compile Include="Exceptions\UnsupportedOperationException.cs" />
-    <Compile Include="Features\Allocations\Allocation.cs" />
-    <Compile Include="Features\Allocations\AllocationEndHourEarlyThanStartException.cs" />
-    <Compile Include="Features\Allocations\AllocationNullEmployeeException.cs" />
-    <Compile Include="Features\Allocations\AllocationNullRoomException.cs" />
-    <Compile Include="Features\Allocations\AllocationPastHourInvalid.cs" />
-    <Compile Include="Features\Allocations\IAllocationRepository.cs" />
-    <Compile Include="Features\Employees\Employee.cs" />
-    <Compile Include="Features\Employees\EmployeeEmptyBranchException.cs" />
-    <Compile Include="Features\Employees\EmployeeEmptyNameException.cs" />
-    <Compile Include="Features\Employees\EmployeeEmptyPositionException.cs" />
-    <Compile Include="Features\Employees\IEmployeeRepository.cs" />
-    <Compile Include="Features\Rooms\Room.cs" />
-    <Compile Include="Features\Rooms\RoomEmptyNameException.cs" />
-    <Compile Include="Features\Rooms\RoomInvalidAccentsNumberException.cs" />
+    <Compile Include="Db.cs" />
+    <Compile Include="Features\Employee\EmployeeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\ProjetoPatricia.Infra\ProjetoPatricia.Infra.csproj">
-      <Project>{C9EF5403-14F7-4872-A1C8-2F18E0D86FD7}</Project>
-      <Name>ProjetoPatricia.Infra</Name>
+    <ProjectReference Include="..\ProjectPatricia.Domain\ProjectPatricia.Domain.csproj">
+      <Project>{3B4BE96A-6C5E-4F32-9736-8B77C9376CDA}</Project>
+      <Name>ProjectPatricia.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
