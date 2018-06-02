@@ -13,7 +13,7 @@ namespace ProjectPatricia.Domain.Features.Rooms
         public string Name { get; set; }
         public int Accents { get; set; }
 
-        public void Validate()
+        public virtual void Validate()
         {
             if (string.IsNullOrEmpty(Name))
                 throw new RoomEmptyNameException();

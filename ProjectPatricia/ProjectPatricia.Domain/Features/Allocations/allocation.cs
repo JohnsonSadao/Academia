@@ -19,7 +19,16 @@ namespace ProjectPatricia.Domain.Features.Allocations
 
         public void Validate()
         {
-            throw new NotImplementedException();
+            if (StartHour > EndHour)
+                throw new AllocationEndHourEarlyThanStartException();
+            if (StartHour < DateTime.Now)
+                throw new AllocationPastHourInvalid();
+            if (Employee == null)
+                throw new AllocationNullEmployeeException();
+            if (Room == null)
+                throw new AllocationNullRoomException();
+            Room.Validate();
+            Employee.Validate();
         }
     }
 }

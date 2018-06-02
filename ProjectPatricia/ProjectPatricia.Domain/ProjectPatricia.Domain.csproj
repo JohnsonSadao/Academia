@@ -43,6 +43,11 @@
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Exceptions\IdentifierUndefinedException.cs" />
     <Compile Include="Exceptions\UnsupportedOperationException.cs" />
+    <Compile Include="Features\Allocations\Allocation.cs" />
+    <Compile Include="Features\Allocations\AllocationEndHourEarlyThanStartException.cs" />
+    <Compile Include="Features\Allocations\AllocationNullEmployeeException.cs" />
+    <Compile Include="Features\Allocations\AllocationNullRoomException.cs" />
+    <Compile Include="Features\Allocations\AllocationPastHourInvalid.cs" />
     <Compile Include="Features\Employees\Employee.cs" />
     <Compile Include="Features\Employees\EmployeeEmptyBranchException.cs" />
     <Compile Include="Features\Employees\EmployeeEmptyNameException.cs" />

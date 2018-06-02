@@ -17,7 +17,7 @@ namespace ProjectPatricia.Common.Tests.Features
             {
                 Employee = employee,
                 Room = room,
-                StartHour = DateTime.Now,
+                StartHour = DateTime.Now.AddHours(1),
                 EndHour = DateTime.Now.AddHours(4)
             };
         }

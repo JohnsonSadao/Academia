@@ -71,6 +71,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Allocations\AllocationDomainTest.cs" />
     <Compile Include="Features\Employees\EmployeeDomainTest.cs" />
     <Compile Include="Features\Rooms\RoomDomainTest.cs" />
     <Compile Include="UnitTest1.cs" />
@@ -87,6 +88,10 @@
     <ProjectReference Include="..\ProjectPatricia.Domain\ProjectPatricia.Domain.csproj">
       <Project>{3B4BE96A-6C5E-4F32-9736-8B77C9376CDA}</Project>
       <Name>ProjectPatricia.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjetoPatricia.Infra\ProjetoPatricia.Infra.csproj">
+      <Project>{C9EF5403-14F7-4872-A1C8-2F18E0D86FD7}</Project>
+      <Name>ProjetoPatricia.Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

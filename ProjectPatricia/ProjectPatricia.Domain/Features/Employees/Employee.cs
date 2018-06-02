@@ -14,7 +14,7 @@ namespace ProjectPatricia.Domain.Features.Employees
         public string Branch { get; set; }
         public string Position { get; set; }
 
-        public void Validate()
+        public virtual void Validate()
         {
             if (string.IsNullOrEmpty(Name))
                 throw new EmployeeEmptyNameException();

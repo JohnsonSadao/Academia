@@ -23,8 +23,8 @@ namespace ProjectPatricia.Domain.Test.Features.Allocations
         public void Initialize()
         {
             fakeEmployee = new Mock<Employee>();
-            fakeRoom = new Mock<Room>();
             fakeEmployee.Setup(x => x.Validate());
+            fakeRoom = new Mock<Room>();
             fakeRoom.Setup(r => r.Validate());
         }
 
@@ -67,8 +67,7 @@ namespace ProjectPatricia.Domain.Test.Features.Allocations
             Action validate = () => allocation.Validate();
             validate.Should().Throw<AllocationNullRoomException>();
         }
-
-
+        
         [Test]
         public void Allocation_Validate_Invalid_Room_ShouldBeFail()
         {
