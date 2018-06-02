@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoPatricia.Infra", "Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoPatricia.Infra.Data", "ProjetoPatricia.Infra.Data\ProjetoPatricia.Infra.Data.csproj", "{1CD27B69-13FC-4D81-801B-695C4D3900B3}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DBPatricia", "DBPatricia\DBPatricia.sqlproj", "{DEDE154E-629B-4A8C-B1E3-A23109B9A52D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,12 @@ Global
 		{1CD27B69-13FC-4D81-801B-695C4D3900B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CD27B69-13FC-4D81-801B-695C4D3900B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CD27B69-13FC-4D81-801B-695C4D3900B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEDE154E-629B-4A8C-B1E3-A23109B9A52D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEDE154E-629B-4A8C-B1E3-A23109B9A52D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEDE154E-629B-4A8C-B1E3-A23109B9A52D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DEDE154E-629B-4A8C-B1E3-A23109B9A52D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEDE154E-629B-4A8C-B1E3-A23109B9A52D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEDE154E-629B-4A8C-B1E3-A23109B9A52D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +92,7 @@ Global
 		{3B4BE96A-6C5E-4F32-9736-8B77C9376CDA} = {0EC3F4AB-1928-454E-8D54-44E2284F97D2}
 		{C9EF5403-14F7-4872-A1C8-2F18E0D86FD7} = {AD3A6A0C-04EE-40FC-AC8F-EC91A60F42D1}
 		{1CD27B69-13FC-4D81-801B-695C4D3900B3} = {AD3A6A0C-04EE-40FC-AC8F-EC91A60F42D1}
+		{DEDE154E-629B-4A8C-B1E3-A23109B9A52D} = {9F3D9719-BE21-48F5-8646-0B3DEF1D6235}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CD1C42C0-66AB-458F-845C-97DCAAFC3B01}

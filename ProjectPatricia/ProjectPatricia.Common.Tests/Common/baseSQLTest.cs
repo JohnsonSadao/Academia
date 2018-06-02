@@ -14,7 +14,7 @@ namespace ProjectPatricia.Common.Tests.Common
                                                 DELETE FROM TBEmployee DBCC CHECKIDENT('DBPatricia.Dbo.TBEmployee',RESEED,0)";
         private const string INSERT_EMPLOYEE = "INSERT INTO TBEmployee(Name,Branch,Position) VALUES ('Pedro', 'NDDPrint', 'Programador')";
         private const string INSERT_ROOM = "INSERT INTO TBRoom(Name,Accents) VALUES ('Sala de Treinamento',35)";
-        private const string INSERT_ALLOCATION = "INSERT INTO TBAllocation(DateStart,DateEnd,RoomId,EmployeeId) VALUES ('2018-05-23T14:25:00','2018-05-23T15:00:00',1,1)";
+        private const string INSERT_ALLOCATION = "INSERT INTO TBAllocation(StartHour,EndHour,RoomId,EmployeeId) VALUES ('2018-05-23T14:25:00','2018-05-23T15:00:00',1,1)";
 
         public static void SeedDatabase()
         {
