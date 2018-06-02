@@ -11,10 +11,14 @@ namespace ProjectPatricia.Domain.Features.Rooms
     {
         public long Id { get; set; }
         public string Name { get; set; }
+        public int Accents { get; set; }
 
         public void Validate()
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(Name))
+                throw new RoomEmptyNameException();
+            if (Accents < 1)
+                throw new RoomInvalidAccentsNumberException();
         }
     }
 }

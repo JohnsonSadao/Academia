@@ -47,6 +47,9 @@
     <Compile Include="Features\Employees\EmployeeEmptyBranchException.cs" />
     <Compile Include="Features\Employees\EmployeeEmptyNameException.cs" />
     <Compile Include="Features\Employees\EmployeeEmptyPositionException.cs" />
+    <Compile Include="Features\Rooms\Room.cs" />
+    <Compile Include="Features\Rooms\RoomEmptyNameException.cs" />
+    <Compile Include="Features\Rooms\RoomInvalidAccentsNumberException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
