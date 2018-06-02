@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectPatricia.Common.Tests.Features
 {
-    public static class ObjectMother
+    public partial class ObjectMother
     {
         public static Employee GetEmployee()
         {
