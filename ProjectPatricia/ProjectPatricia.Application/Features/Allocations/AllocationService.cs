@@ -46,6 +46,7 @@ namespace ProjectPatricia.Application.Features.Allocations
         {
             if (allocation.Id < 1)
                 throw new IdentifierUndefinedException();
+            allocation.Validate();
             return _repository.Update(allocation);
         }
     }
