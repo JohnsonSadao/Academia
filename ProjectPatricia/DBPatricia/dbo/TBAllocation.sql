@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[TBAllocation]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [StartHour] DATETIME NULL, 
     [EndHour] DATETIME NULL, 
     [EmployeeId] INT NULL, 

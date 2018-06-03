@@ -4,7 +4,7 @@ using ProjectPatricia.Common.Tests.Common;
 using ProjectPatricia.Common.Tests.Features;
 using ProjectPatricia.Domain.Exceptions;
 using ProjectPatricia.Domain.Features.Employees;
-using ProjetoPatricia.Infra.Data.Features.Employee;
+using ProjetoPatricia.Infra.Data.Features.Employees;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,7 @@ namespace ProjectPatricia.Infra.Data.Tests.Features.Employees
             }
 
             [Test]
-            public void EmployeeRepository_Add_ShouldBeOk()
+            public void EmployeeRepository_Save_ShouldBeOk()
             {
                 Employee employee = ObjectMother.GetEmployee();
                 employee.Id = 2;
@@ -72,7 +72,7 @@ namespace ProjectPatricia.Infra.Data.Tests.Features.Employees
             }
 
             [Test]
-            public void EmployeeRepository_AddValidate_ShouldBeFail()
+            public void EmployeeRepository_SaveValidate_ShouldBeFail()
             {
                 Employee employee = ObjectMother.GetInvalidNameEmployee();
                 Action salvar = () => _repository.Save(employee);

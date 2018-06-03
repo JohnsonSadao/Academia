@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Db.cs" />
-    <Compile Include="Features\Employee\EmployeeRepository.cs" />
+    <Compile Include="Features\Employees\EmployeeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
