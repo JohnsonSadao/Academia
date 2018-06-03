@@ -37,7 +37,7 @@ namespace ProjetoPatricia.Infra.Data.Features.Employees
         public Employee Save(Employee employee)
         {
             employee.Validate();
-            string sql = "INSERT INTO TBEmployee(Name,Branch,Position) VALUES (@Name, @Branch, @Position)";
+            string sql = "INSERT INTO TBEmployee(NameEmployee,Branch,Position) VALUES (@Name, @Branch, @Position)";
             employee.Id = Db.Insert(sql, Take(employee, false));
             return employee;
 
@@ -47,7 +47,7 @@ namespace ProjetoPatricia.Infra.Data.Features.Employees
         {
             if (employee.Id < 1)
                 throw new IdentifierUndefinedException();
-            string sql = "UPDATE TBEmployee SET Name = @Name, Branch = @Branch, Position = @Position WHERE Id = @Id";
+            string sql = "UPDATE TBEmployee SET NameEmployee = @Name, Branch = @Branch, Position = @Position WHERE Id = @Id";
             Db.Update(sql,Take(employee));
             return employee;
         }
@@ -60,7 +60,7 @@ namespace ProjetoPatricia.Infra.Data.Features.Employees
           {
               Id = Convert.ToInt64(reader["Id"]),
               Branch = reader["Branch"].ToString(),
-              Name = reader["Name"].ToString(),
+              Name = reader["NameEmployee"].ToString(),
               Position = reader["Position"].ToString()
 
           };

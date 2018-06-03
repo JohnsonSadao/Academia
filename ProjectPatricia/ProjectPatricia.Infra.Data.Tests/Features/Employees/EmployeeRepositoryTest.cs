@@ -99,6 +99,7 @@ namespace ProjectPatricia.Infra.Data.Tests.Features.Employees
             public void EmployeeRepository_Delete_ShouldBeFail()
             {
                 Employee employee = ObjectMother.GetEmployee();
+                employee.Id = 0;
                 Action delete = () => _repository.Delete(employee);
                 delete.Should().Throw<IdentifierUndefinedException>();
             }

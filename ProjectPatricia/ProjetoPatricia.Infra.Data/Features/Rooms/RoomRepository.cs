@@ -36,7 +36,7 @@ namespace ProjetoPatricia.Infra.Data.Features.Rooms
         public Room Save(Room room)
         {
             room.Validate();
-            string sql = "INSERT INTO TBRoom(Name, Accents) VALUES (@Name, @Accents)";
+            string sql = "INSERT INTO TBRoom(NameRoom, Accents) VALUES (@Name, @Accents)";
             room.Id = Db.Insert(sql,Take(room,false));
             return room;
         }
@@ -45,7 +45,7 @@ namespace ProjetoPatricia.Infra.Data.Features.Rooms
         {
             if (room.Id < 1)
                 throw new IdentifierUndefinedException();
-            string sql = "UPDATE TBRoom SET Name = @Name, Accents = @Accents WHERE Id = @Id";
+            string sql = "UPDATE TBRoom SET NameRoom = @Name, Accents = @Accents WHERE Id = @Id";
             Db.Update(sql, Take(room));
             return room;
         }
@@ -57,7 +57,7 @@ namespace ProjetoPatricia.Infra.Data.Features.Rooms
           new Room
           {
               Id = Convert.ToInt64(reader["Id"]),
-              Name = reader["Name"].ToString(),
+              Name = reader["NameRoom"].ToString(),
               Accents = Convert.ToInt32(reader["Accents"])
 
           };

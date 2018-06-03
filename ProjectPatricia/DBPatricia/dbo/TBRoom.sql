@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[TBRoom]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Name] VARCHAR(50) NULL, 
+    [NameRoom] VARCHAR(50) NULL, 
     [Accents] VARCHAR(50) NULL
 )
