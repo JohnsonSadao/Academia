@@ -71,6 +71,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Allocations\AllocationRepositoryTest.cs" />
     <Compile Include="Features\Employees\EmployeeRepositoryTest.cs" />
     <Compile Include="Features\Rooms\RoomRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

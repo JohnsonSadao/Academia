@@ -4,6 +4,8 @@ using ProjectPatricia.Common.Tests.Common;
 using ProjectPatricia.Common.Tests.Features;
 using ProjectPatricia.Domain.Exceptions;
 using ProjectPatricia.Domain.Features.Allocations;
+using ProjectPatricia.Domain.Features.Employees;
+using ProjectPatricia.Domain.Features.Rooms;
 using ProjetoPatricia.Infra.Data.Features.Allocations;
 using System;
 using System.Collections.Generic;
@@ -37,8 +39,12 @@ namespace ProjectPatricia.Infra.Data.Tests.Features.Allocations
         [Test]
         public void AllocationRepository_Update_ShouldBeOk()
         {
-            Allocation allocation = ObjectMother.GetAllocation(ObjectMother.GetEmployee(), ObjectMother.GetRoom());
-            allocation.Id = 2;
+            Employee employee = ObjectMother.GetEmployee();
+            employee.Id = 1;
+            Room room = ObjectMother.GetRoom();
+            room.Id = 1;
+            Allocation allocation = ObjectMother.GetAllocation(employee,room);
+            allocation.Id = 1;
             var allocationEditar = _repository.Update(allocation);
             allocationEditar.Employee.Name.Should().Be(allocation.Employee.Name);
         }
