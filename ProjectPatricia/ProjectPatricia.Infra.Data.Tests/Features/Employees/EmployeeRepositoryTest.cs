@@ -48,8 +48,8 @@ namespace ProjectPatricia.Infra.Data.Tests.Features.Employees
             [Test]
             public void EmployeeRepository_Get_ShouldBeOk()
             {
-                var employeePego = _repository.Get(1);
-                employeePego.Name.Should().Be("Pedro");
+                var employeeGet = _repository.Get(1);
+                employeeGet.Name.Should().Be("Pedro");
             }
 
             [Test]

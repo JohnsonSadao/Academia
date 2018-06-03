@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Db.cs" />
     <Compile Include="Features\Employees\EmployeeRepository.cs" />
+    <Compile Include="Features\Rooms\RoomRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

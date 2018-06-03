@@ -16,7 +16,7 @@ namespace ProjetoPatricia.Infra.Data.Features.Employees
             if (employee.Id < 1)
                 throw new IdentifierUndefinedException();
             string sql = "DELETE FROM TBEmployee WHERE Id = @Id";
-            Db.Delete(sql, new object[] { "@Id", employee.Id });
+            Db.Delete(sql, new object[]{ "@Id", employee.Id });
         }
 
         public Employee Get(long id)
