@@ -40,14 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Allocations\AllocationService.cs" />
+    <Compile Include="Features\Allocations\IAllocationService.cs" />
+    <Compile Include="Features\Employees\EmployeeService.cs" />
+    <Compile Include="Features\Employees\IEmployeeService.cs" />
     <Compile Include="Features\Rooms\IRoomService.cs" />
     <Compile Include="Features\Rooms\RoomService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\Allocations\" />
-    <Folder Include="Features\Employees\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ProjectPatricia.Domain\ProjectPatricia.Domain.csproj">
       <Project>{3B4BE96A-6C5E-4F32-9736-8B77C9376CDA}</Project>
