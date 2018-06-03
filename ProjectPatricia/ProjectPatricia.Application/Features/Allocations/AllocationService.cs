@@ -1,4 +1,5 @@
-﻿using ProjectPatricia.Domain.Features.Allocations;
+﻿using ProjectPatricia.Domain.Exceptions;
+using ProjectPatricia.Domain.Features.Allocations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,34 +11,42 @@ namespace ProjectPatricia.Application.Features.Allocations
     public class AllocationService: IAllocationService
     {
         public IAllocationRepository _repository;
+
         public AllocationService(IAllocationRepository repository)
         {
-            repository = _repository;
+            _repository = repository;
         }
 
         public void Delete(Allocation allocation)
         {
-            throw new NotImplementedException();
+            if (allocation.Id < 1)
+                throw new IdentifierUndefinedException();
+            _repository.Delete(allocation);
         }
 
         public Allocation Get(long id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+                throw new IdentifierUndefinedException();
+            return _repository.Get(id);
         }
 
         public IEnumerable<Allocation> GetAll()
         {
-            throw new NotImplementedException();
+            return _repository.GetAll();
         }
 
         public Allocation Save(Allocation allocation)
         {
-            throw new NotImplementedException();
+            allocation.Validate();
+            return _repository.Save(allocation);
         }
 
         public Allocation Update(Allocation allocation)
         {
-            throw new NotImplementedException();
+            if (allocation.Id < 1)
+                throw new IdentifierUndefinedException();
+            return _repository.Update(allocation);
         }
     }
 }

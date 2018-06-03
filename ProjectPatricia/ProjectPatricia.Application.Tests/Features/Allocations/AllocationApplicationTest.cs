@@ -5,6 +5,8 @@ using ProjectPatricia.Application.Features.Allocations;
 using ProjectPatricia.Common.Tests.Features;
 using ProjectPatricia.Domain.Exceptions;
 using ProjectPatricia.Domain.Features.Allocations;
+using ProjectPatricia.Domain.Features.Employees;
+using ProjectPatricia.Domain.Features.Rooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +24,16 @@ namespace ProjectPatricia.Application.Tests.Features.Allocations
         public void Setup()
         {
             _mockRepository = new Mock<IAllocationRepository>();
-
         }
 
         [Test]
         public void AllocationService_Add_ShouldBeOK()
         {
-            Allocation allocation = ObjectMother.GetAllocation(ObjectMother.GetEmployee(), ObjectMother.GetRoom());
+            Employee employee = ObjectMother.GetEmployee();
+            Room room = ObjectMother.GetRoom();
+            employee.Id = 1;
+            room.Id = 1;
+            Allocation allocation = ObjectMother.GetAllocation(employee, room);
             _mockRepository.Setup(m => m.Save(allocation)).Returns(new Allocation() { Id = 1 });
             AllocationService service = new AllocationService(_mockRepository.Object);
 
@@ -42,7 +47,11 @@ namespace ProjectPatricia.Application.Tests.Features.Allocations
         [Test]
         public void AllocationService_Update_ShouldBeOK()
         {
-            Allocation allocation = ObjectMother.GetAllocation(ObjectMother.GetEmployee(), ObjectMother.GetRoom());
+            Employee employee = ObjectMother.GetEmployee();
+            Room room = ObjectMother.GetRoom();
+            employee.Id = 1;
+            room.Id = 1;
+            Allocation allocation = ObjectMother.GetAllocation(employee, room);
             allocation.Id = 2;
 
             _mockRepository.Setup(m => m.Update(allocation)).Returns(allocation);
@@ -60,8 +69,11 @@ namespace ProjectPatricia.Application.Tests.Features.Allocations
         [Test]
         public void AllocationService_Get_ShouldBeOk()
         {
-
-            Allocation allocation = ObjectMother.GetAllocation(ObjectMother.GetEmployee(), ObjectMother.GetRoom());
+            Employee employee = ObjectMother.GetEmployee();
+            Room room = ObjectMother.GetRoom();
+            employee.Id = 1;
+            room.Id = 1;
+            Allocation allocation = ObjectMother.GetAllocation(employee, room);
             allocation.Id = 3;
 
             _mockRepository.Setup(m => m.Get(3)).Returns(allocation);
@@ -76,7 +88,6 @@ namespace ProjectPatricia.Application.Tests.Features.Allocations
         [Test]
         public void AllocationService_GetAll_ShouldBeOk()
         {
-
             _mockRepository.Setup(m => m.GetAll()).Returns(new List<Allocation>());
 
             AllocationService service = new AllocationService(_mockRepository.Object);
