@@ -71,11 +71,25 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Features\Rooms\RoomApplicationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectPatricia.Common.Tests\ProjectPatricia.Common.Tests.csproj">
+      <Project>{7A1D828A-B37F-4D29-B112-F7E4AF3EA4A7}</Project>
+      <Name>ProjectPatricia.Common.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectPatricia.Domain\ProjectPatricia.Domain.csproj">
+      <Project>{3B4BE96A-6C5E-4F32-9736-8B77C9376CDA}</Project>
+      <Name>ProjectPatricia.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjetoPatricia.Infra\ProjetoPatricia.Infra.csproj">
+      <Project>{C9EF5403-14F7-4872-A1C8-2F18E0D86FD7}</Project>
+      <Name>ProjetoPatricia.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
