@@ -78,6 +78,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProjectPatricia.Application\ProjectPatricia.Application.csproj">
+      <Project>{6AC17501-01C4-4F22-B8EB-47A4511B4877}</Project>
+      <Name>ProjectPatricia.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectPatricia.Common.Tests\ProjectPatricia.Common.Tests.csproj">
       <Project>{7A1D828A-B37F-4D29-B112-F7E4AF3EA4A7}</Project>
       <Name>ProjectPatricia.Common.Tests</Name>

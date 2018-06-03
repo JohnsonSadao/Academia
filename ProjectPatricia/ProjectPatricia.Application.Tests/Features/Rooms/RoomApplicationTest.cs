@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using ProjectPatricia.Application.Features.Rooms;
 using ProjectPatricia.Common.Tests.Features;
 using ProjectPatricia.Domain.Exceptions;
 using ProjectPatricia.Domain.Features.Rooms;
@@ -31,10 +32,10 @@ namespace ProjectPatricia.Application.Tests.Features.Rooms
             _mockRepository.Setup(m => m.Save(room)).Returns(new Room() { Id = 1 });
             RoomService service = new RoomService(_mockRepository.Object);
 
-            Room resultado = service.Salvar(room);
+            Room result = service.Save(room);
 
-            resultado.Should().NotBeNull();
-            resultado.Id.Should().BeGreaterThan(0);
+            result.Should().NotBeNull();
+            result.Id.Should().BeGreaterThan(0);
             _mockRepository.Verify(repository => repository.Save(room));
         }
 
@@ -49,11 +50,11 @@ namespace ProjectPatricia.Application.Tests.Features.Rooms
             RoomService service = new RoomService(_mockRepository.Object);
 
 
-            Room resultado = service.Atualizar(room);
+            Room result = service.Update(room);
 
-            resultado.Should().NotBeNull();
-            resultado.Titulo.Should().Be("Dom Casmurro");
-            _mockRepository.Verify(repository => repository.Atualizar(room));
+            result.Should().NotBeNull();
+            result.Name.Should().Be("Sala de reunião");
+            _mockRepository.Verify(repository => repository.Update(room));
         }
 
         [Test]
@@ -66,10 +67,10 @@ namespace ProjectPatricia.Application.Tests.Features.Rooms
             _mockRepository.Setup(m => m.Get(3)).Returns(room);
 
             RoomService service = new RoomService(_mockRepository.Object);
-            Room resultado = service.Obter(3);
+            Room result = service.Get(3);
 
-            resultado.Should().NotBeNull();
-            _mockRepository.Verify(repository => repository.Obter(3));
+            result.Should().NotBeNull();
+            _mockRepository.Verify(repository => repository.Get(3));
         }
 
         [Test]
@@ -80,9 +81,9 @@ namespace ProjectPatricia.Application.Tests.Features.Rooms
 
             RoomService service = new RoomService(_mockRepository.Object);
 
-            IEnumerable<Room> resultado = service.ObterTodos();
+            IEnumerable<Room> result = service.GetAll();
 
-            resultado.Should().NotBeNull();
+            result.Should().NotBeNull();
             _mockRepository.Verify(repository => repository.GetAll());
         }
 
@@ -97,7 +98,7 @@ namespace ProjectPatricia.Application.Tests.Features.Rooms
 
             RoomService service = new RoomService(_mockRepository.Object);
 
-            service.Deletar(modelo);
+            service.Delete(modelo);
 
             _mockRepository.Verify(repository => repository.Delete(modelo));
         }
@@ -111,7 +112,7 @@ namespace ProjectPatricia.Application.Tests.Features.Rooms
 
             RoomService service = new RoomService(_mockRepository.Object);
 
-            Action comparison = () => service.Salvar(modelo);
+            Action comparison = () => service.Save(modelo);
 
             comparison.Should().Throw<RoomEmptyNameException>();
             _mockRepository.VerifyNoOtherCalls();
@@ -126,7 +127,7 @@ namespace ProjectPatricia.Application.Tests.Features.Rooms
 
             RoomService service = new RoomService(_mockRepository.Object);
 
-            Action update = () => service.Atualizar(modelo);
+            Action update = () => service.Update(modelo);
 
             update.Should().Throw<IdentifierUndefinedException>();
             _mockRepository.VerifyNoOtherCalls();
@@ -141,7 +142,7 @@ namespace ProjectPatricia.Application.Tests.Features.Rooms
             {
                 Id = 0
             };
-            Action comparison = () => service.Atualizar(room);
+            Action comparison = () => service.Update(room);
 
             comparison.Should().Throw<IdentifierUndefinedException>();
             _mockRepository.VerifyNoOtherCalls();

@@ -14,6 +14,5 @@ namespace ProjectPatricia.Application.Features.Rooms
         Room Get(long id);
         IEnumerable<Room> GetAll();
         void Delete(Room room);
-        bool RegisterWithDependency(int id);
     }
 }
