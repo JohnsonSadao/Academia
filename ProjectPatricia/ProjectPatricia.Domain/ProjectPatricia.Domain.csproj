@@ -48,6 +48,7 @@
     <Compile Include="Features\Allocations\AllocationNullEmployeeException.cs" />
     <Compile Include="Features\Allocations\AllocationNullRoomException.cs" />
     <Compile Include="Features\Allocations\AllocationPastHourInvalid.cs" />
+    <Compile Include="Features\Allocations\AllocationSameHourException.cs" />
     <Compile Include="Features\Allocations\IAllocationRepository.cs" />
     <Compile Include="Features\Employees\Employee.cs" />
     <Compile Include="Features\Employees\EmployeeEmptyBranchException.cs" />

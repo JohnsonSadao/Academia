@@ -21,6 +21,16 @@ namespace ProjectPatricia.Common.Tests.Features
                 EndHour = DateTime.Now.AddHours(4)
             };
         }
+        public static Allocation GetSameHourAllocation(Employee employee, Room room)
+        {
+            return new Allocation()
+            {
+                Employee = employee,
+                Room = room,
+                StartHour = DateTime.Now.AddHours(2),
+                EndHour = DateTime.Now.AddHours(4)
+            };
+        }
 
         public static Allocation GetInvalidPastStartHourAllocation(Employee employee, Room room)
         {
