@@ -42,9 +42,12 @@ namespace ProjectPatricia.Application.Features.Allocations
             List<Allocation> list = _repository.GetAll().ToList();
             foreach (Allocation a in list)
                 if (a.Room.Id == allocation.Room.Id)
-                    if (a.StartHour < allocation.StartHour || allocation.StartHour < a.EndHour)
-                        if (a.StartHour < allocation.EndHour || allocation.EndHour < a.EndHour)
-                            throw new AllocationSameHourException();
+                {
+                    if (a.StartHour < allocation.StartHour && allocation.StartHour < a.EndHour)
+                        throw new AllocationSameHourException();
+                    if (a.StartHour < allocation.EndHour && allocation.EndHour < a.EndHour)
+                        throw new AllocationSameHourException();
+                }
 
             return _repository.Save(allocation);
         }
@@ -56,10 +59,18 @@ namespace ProjectPatricia.Application.Features.Allocations
             allocation.Validate();
             List<Allocation> list = _repository.GetAll().ToList();
             foreach (Allocation a in list)
-                if (a.Room.Id == allocation.Room.Id)
-                    if (a.StartHour < allocation.StartHour || allocation.StartHour < a.EndHour)
-                        if (a.StartHour < allocation.EndHour || allocation.EndHour < a.EndHour)
+            {
+                if (allocation.Id != a.Id)
+                {
+                    if (a.Room.Id == allocation.Room.Id)
+                    {
+                        if (a.StartHour < allocation.StartHour && allocation.StartHour < a.EndHour)
                             throw new AllocationSameHourException();
+                        if (a.StartHour < allocation.EndHour && allocation.EndHour < a.EndHour)
+                            throw new AllocationSameHourException();
+                    }
+                }
+            }
             return _repository.Update(allocation);
         }
     }

@@ -50,7 +50,7 @@ namespace ProjectPatricia.Application.Tests.Features.Allocations
             Room room = ObjectMother.GetRoom();
             employee.Id = 1;
             room.Id = 1;
-            Allocation allocation = ObjectMother.GetAllocation(employee, room);           
+            Allocation allocation = ObjectMother.GetAllocation(employee, room);
             _mockRepository.Setup(m => m.GetAll()).Returns(new List<Allocation> {
                 ObjectMother.GetSameHourAllocation(employee, room)
             });
@@ -59,7 +59,7 @@ namespace ProjectPatricia.Application.Tests.Features.Allocations
             Action addSameHour = () => service.Save(allocation);
 
             addSameHour.Should().Throw<AllocationSameHourException>();
-           
+
         }
 
         [Test]
@@ -93,12 +93,14 @@ namespace ProjectPatricia.Application.Tests.Features.Allocations
             room.Id = 1;
             Allocation allocation = ObjectMother.GetAllocation(employee, room);
             allocation.Id = 1;
+            Allocation sameHour = ObjectMother.GetSameHourAllocation(employee, room);
+            sameHour.Id = 2;
             _mockRepository.Setup(m => m.GetAll()).Returns(new List<Allocation> {
-                ObjectMother.GetSameHourAllocation(employee, room)
+                allocation
             });
             AllocationService service = new AllocationService(_mockRepository.Object);
 
-            Action addSameHour = () => service.Update(allocation);
+            Action addSameHour = () => service.Update(sameHour);
 
             addSameHour.Should().Throw<AllocationSameHourException>();
 
