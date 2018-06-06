@@ -85,6 +85,26 @@ namespace ProjectPatricia.Application.Tests.Features.Allocations
         }
 
         [Test]
+        public void AllocationService_Update_SameHour_ShouldBeFail()
+        {
+            Employee employee = ObjectMother.GetEmployee();
+            Room room = ObjectMother.GetRoom();
+            employee.Id = 1;
+            room.Id = 1;
+            Allocation allocation = ObjectMother.GetAllocation(employee, room);
+            allocation.Id = 1;
+            _mockRepository.Setup(m => m.GetAll()).Returns(new List<Allocation> {
+                ObjectMother.GetSameHourAllocation(employee, room)
+            });
+            AllocationService service = new AllocationService(_mockRepository.Object);
+
+            Action addSameHour = () => service.Update(allocation);
+
+            addSameHour.Should().Throw<AllocationSameHourException>();
+
+        }
+
+        [Test]
         public void AllocationService_Get_ShouldBeOk()
         {
             Employee employee = ObjectMother.GetEmployee();

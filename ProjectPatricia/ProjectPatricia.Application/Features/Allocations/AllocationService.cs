@@ -39,7 +39,7 @@ namespace ProjectPatricia.Application.Features.Allocations
         public Allocation Save(Allocation allocation)
         {
             allocation.Validate();
-            List<Allocation> list = _repository.GetAll().ToList<Allocation>();
+            List<Allocation> list = _repository.GetAll().ToList();
             foreach (Allocation a in list)
                 if (a.Room.Id == allocation.Room.Id)
                     if (a.StartHour < allocation.StartHour || allocation.StartHour < a.EndHour)
@@ -54,6 +54,12 @@ namespace ProjectPatricia.Application.Features.Allocations
             if (allocation.Id < 1)
                 throw new IdentifierUndefinedException();
             allocation.Validate();
+            List<Allocation> list = _repository.GetAll().ToList();
+            foreach (Allocation a in list)
+                if (a.Room.Id == allocation.Room.Id)
+                    if (a.StartHour < allocation.StartHour || allocation.StartHour < a.EndHour)
+                        if (a.StartHour < allocation.EndHour || allocation.EndHour < a.EndHour)
+                            throw new AllocationSameHourException();
             return _repository.Update(allocation);
         }
     }
